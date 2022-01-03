@@ -1,0 +1,94 @@
+stages :  ## parallezing tasks
+  - test_py
+  - create_docs
+
+test_py_job:
+  stage: test_py
+  allow_failure: true
+  image: python:3.7
+  coverage: '/TOTAL.*\s+(\d+%)$/'
+  before_script: 
+    - python3 --version
+    - pip install virtualenv 
+    - python3 -m venv DeepVenv
+    - source DeepVenv/bin/activate
+    - pip --version
+    - pip install pytest pytest-cov
+    - pip install pytest-html
+    - pip install -r requirements.txt
+  script: 
+    - echo "starting test for python coverage ... "
+    # to have a html file but the badge would not work
+    # - python3 -m pytest --cov-report=html --cov=code tests/
+    - python3 -m pytest --cov=code test/
+    - echo "Code coverage finished ..."
+  artifacts: 
+    untracked : false
+    paths :
+      - coverage/index.html
+    expire_in: 60 days
+  only : 
+    changes :
+      - code/*.py
+
+
+
+
+pylint_job:
+  stage: test_py
+  variables:
+    CI_DEBUG_TRACE: "true"
+  allow_failure: true
+  image: python:3.7
+
+  before_script: 
+    - python3 --version
+    - pip install virtualenv 
+    - python3 -m venv DeepVenv
+    - source DeepVenv/bin/activate
+    - pip --version
+    - pip install -r requirements.txt
+    - pip install pylint
+    - pip install pylint-exit
+  script: 
+    - mkdir ./pylint
+    - echo "starting lint for python code ... "
+    - set -o noclobber
+    - pylint -ry -sy code/*.py  --output-format=text --output=docs/pylint_report.txt || pylint-exit $?
+    
+  artifacts:
+    untracked: false
+    expire_in: 60 days
+    paths : 
+      - docs/pylint_report.txt
+  only : 
+    changes :
+      - code/*.py
+
+
+
+
+create_docs_job:
+  stage: create_docs
+  variables:
+    CI_DEBUG_TRACE: "true"
+  allow_failure: true
+  image: python:3.7
+
+  before_script: 
+    - python3 --version
+    - pip install virtualenv 
+    - python3 -m venv DeepVenv
+    - source DeepVenv/bin/activate
+    - pip --version
+    - pip install Sphinx 
+    - pip install sphinx-rtd-theme
+    - pip install -r requirements.txt
+  script: 
+    - echo "starting docs generation for python code ... "
+    - cd docs
+    - sphinx-apidoc -o . ../code
+    - make html
+  only : 
+    changes :
+      - code/*.py
