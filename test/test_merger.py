@@ -14,7 +14,6 @@ import pytest
 
 def test_loader():
     
-
     with pytest.raises(Exception) as execinfo : 
         merge(file_in=3)
         assert(str(execinfo.value)=="file must be string which represent path to csv files")
