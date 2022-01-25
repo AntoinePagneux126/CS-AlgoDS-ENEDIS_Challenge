@@ -2,6 +2,12 @@ import pandas as pd
 import math
 import numpy as np
 from sklearn import preprocessing
+from sklearn.metrics import mean_squared_error
+from sklearn.preprocessing import PowerTransformer,QuantileTransformer
+import scipy.stats as sct
+from statsmodels.tsa.arima.model import ARIMA
+from statsmodels.tsa.statespace.sarimax import SARIMAX
+
 
 
 def merge(file_in="../dataset/inputs.csv",file_out="../dataset/outputs.csv"): 
@@ -46,7 +52,7 @@ def keep_relevant_features(df):
         if col not in myfeatures: 
             df=df.drop(columns=[col])
     return df
-    
+
 def symetric(df_reduced):
     list_to_box=[]
     list_quantile=[]
@@ -83,10 +89,10 @@ def encodage(df):
 def feature_engineering(df_indexed):
     df_indexed.drop(["Mois","IDS","Horodate"],inplace=True,axis=1)
     df_indexed = keep_relevant_features(df_indexed)
-    df_indexed = symetric(df_indexed)
-    ss= preprocessing.StandardScaler()
-    targets = ['RES1_BASE', 'RES11_BASE','PRO1_BASE', 'RES2_HC', 'RES2_HP', 'PRO2_HC', 'PRO2_HP']
-    df_indexed=pd.DataFrame(ss.fit_transform(df_indexed.drop(targets),columns=df_indexed.drop(targets).columns)
+    #df_indexed = symetric(df_indexed)
+    #ss= preprocessing.StandardScaler()
+    #targets = ['RES1_BASE', 'RES11_BASE','PRO1_BASE', 'RES2_HC', 'RES2_HP', 'PRO2_HC', 'PRO2_HP']
+    #df_indexed=pd.DataFrame(ss.fit_transform(df_indexed.drop(targets),columns=df_indexed.drop(targets).columns)
     df_indexed["Year"]=df_indexed.index.year
     df_indexed["Month"]=df_indexed.index.month.map(lambda x : np.cos(x*2*np.pi/12))
     df_indexed["Day"]=df_indexed.index.day.map(lambda x : np.cos(x*2*np.pi/31))
@@ -108,5 +114,50 @@ def preprocessing(df):
     targets = ['RES1_BASE', 'RES11_BASE','PRO1_BASE', 'RES2_HC', 'RES2_HP', 'PRO2_HC', 'PRO2_HP']
     X = df.drop(targets, axis=1)
     y = df[targets]
-    print(y.value_counts())
     return X, y
+
+def rmse(y_true, y_pred):
+    return np.sqrt(mean_squared_error(y_true, y_pred))
+
+def evaluate_arimax_model(X_train, X_test, arima_order, exogenous_var_train, exogenous_var_test):
+ 
+    mycolonne=exogenous_var_train.columns
+    history = [x for x in X_train]
+    exog=np.array([[x for x in exogenous_var_train[elt]] for elt in exogenous_var_train.columns]).T.tolist()
+    exog_test=np.array([[x for x in exogenous_var_test[elt]] for elt in exogenous_var_test.columns]).T.tolist()
+    # make predictions
+    predictions = list()
+
+    for t in range(len(X_test)):
+        model = SARIMAX(endog=history, order=arima_order, exog=exog,enforce_stationarity=False)
+        model_fit = model.fit(disp=0)
+        yhat = model_fit.forecast(steps=1,exog=[exog_test[t]])
+        predictions.append(yhat[0])
+        history.append(X_test.values[t])
+        exog.append(exog_test[t])
+    error = rmse(X_test, predictions)
+
+    return error, predictions
+
+def arimax_grid_search(X_train, X_test, p_values, d_values, q_values, exogenous_var_train, exogenous_var_test):
+
+
+    best_score, best_cfg = float("inf"), None
+    for p in p_values:
+        for d in d_values:
+            for q in q_values:
+                order = (p, d, q)
+                try:
+                    rmse, _ = evaluate_arimax_model(
+                        X_train, X_test, order, exogenous_var_train, exogenous_var_test)
+                    if rmse < best_score:
+                        best_score, best_cfg = rmse, order
+                    print("ARIMAX(%d,%d,%d) RMSE=%.3f Exogenous =" %
+                          (p, d, q, rmse))
+
+                except:
+                    continue
+
+    print("Best ARIMAX%s MSE=%.3f" % (best_cfg, best_score))
+
+    return best_cfg, best_score

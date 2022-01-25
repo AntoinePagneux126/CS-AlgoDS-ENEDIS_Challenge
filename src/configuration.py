@@ -12,6 +12,5 @@ def config_algo_ds():
 
 if __name__ == "__main__":
     config = config_algo_ds()
-    print("hello world")
     print("Path: ", config['PATH']['DATA_PATH'])
     print("Learing Rate: ", config['PARAMETERS']['NUM_WORKER'])
