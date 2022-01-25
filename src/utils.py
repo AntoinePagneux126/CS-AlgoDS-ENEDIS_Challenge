@@ -1,5 +1,7 @@
 import pandas as pd 
 import math
+import numpy as np
+from sklearn import preprocessing
 
 
 def merge(file_in="../dataset/inputs.csv",file_out="../dataset/outputs.csv"): 
@@ -28,33 +30,83 @@ def getxy(hour):
     y = math.cos((180 - hour * 15)/180 * 3.141)
     return x, y
 
+def keep_relevant_features(df):
+    targets = ['RES1_BASE', 'RES11_BASE','PRO1_BASE', 'RES2_HC', 'RES2_HP', 'PRO2_HC', 'PRO2_HP']
+    myfeatures=df.columns
+    correlation=df.corr()
+    colonnes=df.columns
+    for ligne in colonnes:
+        for col in colonnes:
+            if 0.9<abs(correlation[ligne][col])<1:
+                if col in myfeatures and col not in targets:
+                    myfeatures=myfeatures.drop(col)
+            elif correlation[ligne][col]==1:
+                break
+    for col in df.columns:
+        if col not in myfeatures: 
+            df=df.drop(columns=[col])
+    return df
+    
+def symetric(df_reduced):
+    list_to_box=[]
+    list_quantile=[]
+    targets = ['RES1_BASE', 'RES11_BASE','PRO1_BASE', 'RES2_HC', 'RES2_HP', 'PRO2_HC', 'PRO2_HP']
+    for feature in df_reduced.columns.drop(targets):
+        skew=sct.skew(df_reduced[feature])
+        if abs(skew)>1:
+            list_to_box.append(feature)
+        else:
+            list_quantile.append(feature)
+    for elt in list_to_box:
+        yj = PowerTransformer(method='yeo-johnson')
+        data = np.array(df_reduced[elt])
+        reshaped_data = np.array(data).reshape(-1, 1)
+        yj.fit(reshaped_data)
+        df_reduced[elt] = yj.transform(reshaped_data)
+        
+    rng = np.random.RandomState(304)  
+    for elt in list_quantile:
+        qt = QuantileTransformer(output_distribution='normal',random_state=rng)
+        data = np.array(df_reduced[elt])
+        reshaped_data = np.array(data).reshape(-1, 1)
+        qt.fit(reshaped_data)
+        df_reduced[elt] = qt.transform(reshaped_data)
+    return df_reduced
+
 def encodage(df):
-    return df 
-
-
-def feature_engineering(df):
+    
     df_indexed=df.set_index("Horodate_UTC")
     df_indexed.index = pd.to_datetime(df.set_index("Horodate_UTC").index)
-    df_indexed["Year"]=df_indexed.index.year
-    df_indexed["Month"]=df_indexed.index.month
-    df_indexed["Day"]=df_indexed.index.day
-    df_indexed["week_day"]=df_indexed.index.weekday
-    df_indexed["Hour_X"],df_indexed["Hour_Y"]=zip(*pd.Series(df_indexed.index.hour).apply(getxy))
-
-
-
-
     return df_indexed
 
+
+def feature_engineering(df_indexed):
+    df_indexed.drop(["Mois","IDS","Horodate"],inplace=True,axis=1)
+    df_indexed = keep_relevant_features(df_indexed)
+    df_indexed = symetric(df_indexed)
+    ss= preprocessing.StandardScaler()
+    targets = ['RES1_BASE', 'RES11_BASE','PRO1_BASE', 'RES2_HC', 'RES2_HP', 'PRO2_HC', 'PRO2_HP']
+    df_indexed=pd.DataFrame(ss.fit_transform(df_indexed.drop(targets),columns=df_indexed.drop(targets).columns)
+    df_indexed["Year"]=df_indexed.index.year
+    df_indexed["Month"]=df_indexed.index.month.map(lambda x : np.cos(x*2*np.pi/12))
+    df_indexed["Day"]=df_indexed.index.day.map(lambda x : np.cos(x*2*np.pi/31))
+    df_indexed["Week_day"]=df_indexed.index.weekday.map(lambda x : np.cos(x*2*np.pi/7))
+    df_indexed["Hour_X"],df_indexed["Hour_Y"]=zip(*pd.Series(df_indexed.index.hour).apply(getxy))
+    return df_indexed
+
+
 def imputation(df):
-    return(df.dropna(axis=0))
+    df.dropna(thresh=len(df)*0.5,axis=1,inplace=True)
+    df.dropna(thresh=len(df)*0.5,axis=0,inplace=True)
+    return df
 
 
 def preprocessing(df):
     df = encodage(df)
     df = feature_engineering(df)
     df = imputation(df)
-    X = df.drop('Target', axis=1)
-    y = df['Target']
+    targets = ['RES1_BASE', 'RES11_BASE','PRO1_BASE', 'RES2_HC', 'RES2_HP', 'PRO2_HC', 'PRO2_HP']
+    X = df.drop(targets, axis=1)
+    y = df[targets]
     print(y.value_counts())
     return X, y
