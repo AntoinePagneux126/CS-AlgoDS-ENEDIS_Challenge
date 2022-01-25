@@ -8,6 +8,7 @@ from utils import *
 from configuration import config_algo_ds
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
+from mailsender import send_csv_by_mail
 
 
 # exemple to run:   python3 main.py --mode=train --model=cnn
@@ -77,6 +78,7 @@ if __name__ == '__main__':
             plt.ylabel(f"{target}")
             plt.title(f"Predicted vs True value for {target} with {error} error")
             plt.savefig(f"../outputs/{target}.png")
+        send_csv_by_mail()
   
 
 
