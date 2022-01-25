@@ -1,4 +1,5 @@
 import pandas as pd 
+import math
 
 
 def merge(file_in="../dataset/inputs.csv",file_out="../dataset/outputs.csv"): 
@@ -22,6 +23,38 @@ def merge(file_in="../dataset/inputs.csv",file_out="../dataset/outputs.csv"):
                 )
     df.to_csv("../dataset/inout.csv",index=False)
 
+def getxy(hour):
+    x = math.sin((180 - hour * 15)/180 * 3.141)
+    y = math.cos((180 - hour * 15)/180 * 3.141)
+    return x, y
 
-if __name__ == "__main__" :
-    merge()
+def encodage(df):
+    return df 
+
+
+def feature_engineering(df):
+    df_indexed=df.set_index("Horodate_UTC")
+    df_indexed.index = pd.to_datetime(df.set_index("Horodate_UTC").index)
+    df_indexed["Year"]=df_indexed.index.year
+    df_indexed["Month"]=df_indexed.index.month
+    df_indexed["Day"]=df_indexed.index.day
+    df_indexed["week_day"]=df_indexed.index.weekday
+    df_indexed["Hour_X"],df_indexed["Hour_Y"]=zip(*pd.Series(df_indexed.index.hour).apply(getxy))
+
+
+
+
+    return df_indexed
+
+def imputation(df):
+    return(df.dropna(axis=0))
+
+
+def preprocessing(df):
+    df = encodage(df)
+    df = feature_engineering(df)
+    df = imputation(df)
+    X = df.drop('Target', axis=1)
+    y = df['Target']
+    print(y.value_counts())
+    return X, y

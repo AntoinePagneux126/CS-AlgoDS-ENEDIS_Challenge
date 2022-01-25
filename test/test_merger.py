@@ -8,8 +8,8 @@ current_dir= os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentfram
 parent_dir= os.path.dirname(current_dir)
 sys.path.insert(0,parent_dir)
 
-import code
-from code.merge_inout import merge
+import src
+from src.utils import merge
 import pytest
 
 def test_loader():
