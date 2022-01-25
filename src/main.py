@@ -49,28 +49,35 @@ if __name__ == '__main__':
     print(f"Preprocessing is on going...")
     print("-------------")
 
-    X,y = preprocessing(df)
+    X,y = preprocessing_tuned(df)
 
 
     print("-------------")
     print(f"Preprocessing is finished, start training...")
     print("-------------")
-    X_train, X_test, y_train, y_test  = train_test_split( X, y, test_size=TEST_SIZE)
+    X_train, X_test, y_train, y_test  = train_test_split( X, y, test_size=TEST_SIZE,shuffle=False)
+
+    print(y_test.shape)
+    print(y_train.shape)
+    print(X_test.shape)
+    print(X_train.shape)
+
+    targets = ['RES1_BASE', 'RES11_BASE','PRO1_BASE', 'RES2_HC', 'RES2_HP', 'PRO2_HC', 'PRO2_HP']
+    
     if model_type == "ARIMAX" : 
-        best_cfg,best_score=arimax_grid_search(y_train,y_test,np.array([3,4,5]),np.arange(5),np.array([3,4,5]),X_train,X_test)
-        errors, predictions=evaluate_arimax_model(X_train, X_test, best_cfg, X_train, X_test)
-        targets = ['RES1_BASE', 'RES11_BASE','PRO1_BASE', 'RES2_HC', 'RES2_HP', 'PRO2_HC', 'PRO2_HP']
-        for error,y_pred,y_true,target in zip(errors,predictions,y_test,targets) :  
+        for target in targets :
+            best_cfg,best_score=arimax_grid_search(y_train[target],y_test[target],np.array([3,4,5]),np.arange(5),np.array([3,4,5]),X_train,X_test)
+            error, predictions=evaluate_arimax_model(y_train[target],y_test[target], best_cfg, X_train, X_test)
             plt.figure(figsize=(12,8))
-            plt.plot(y_pred,c="blue",label="Predicted",markers="+")
-            plt.plot(y_test,c="green",label="True",markers="x")
+            plt.plot(predictions,c="blue",label="Predicted",markers="+")
+            plt.plot(y_test[target],c="green",label="True",markers="x")
             plt.grid()
             plt.legend()
             plt.xlabel("Time")
             plt.ylabel(f"{target}")
             plt.title(f"Predicted vs True value for {target} with {error} error")
             plt.savefig(f"../outputs/{target}.png")
-            
+  
 
 
 

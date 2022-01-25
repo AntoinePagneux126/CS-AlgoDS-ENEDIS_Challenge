@@ -52,7 +52,7 @@ def keep_relevant_features(df):
         if col not in myfeatures: 
             df=df.drop(columns=[col])
     return df
-
+    
 def symetric(df_reduced):
     list_to_box=[]
     list_quantile=[]
@@ -89,10 +89,11 @@ def encodage(df):
 def feature_engineering(df_indexed):
     df_indexed.drop(["Mois","IDS","Horodate"],inplace=True,axis=1)
     df_indexed = keep_relevant_features(df_indexed)
-    #df_indexed = symetric(df_indexed)
-    #ss= preprocessing.StandardScaler()
-    #targets = ['RES1_BASE', 'RES11_BASE','PRO1_BASE', 'RES2_HC', 'RES2_HP', 'PRO2_HC', 'PRO2_HP']
-    #df_indexed=pd.DataFrame(ss.fit_transform(df_indexed.drop(targets),columns=df_indexed.drop(targets).columns)
+    df_indexed = symetric(df_indexed)
+    ss= preprocessing.StandardScaler()
+    targets = ['RES1_BASE', 'RES11_BASE','PRO1_BASE', 'RES2_HC', 'RES2_HP', 'PRO2_HC', 'PRO2_HP']
+    columns_targ = df_indexed.columns.drop(targets)
+    df_indexed[columns_targ] = ss.fit_transform(df_indexed[columns_targ])
     df_indexed["Year"]=df_indexed.index.year
     df_indexed["Month"]=df_indexed.index.month.map(lambda x : np.cos(x*2*np.pi/12))
     df_indexed["Day"]=df_indexed.index.day.map(lambda x : np.cos(x*2*np.pi/31))
@@ -100,14 +101,13 @@ def feature_engineering(df_indexed):
     df_indexed["Hour_X"],df_indexed["Hour_Y"]=zip(*pd.Series(df_indexed.index.hour).apply(getxy))
     return df_indexed
 
-
 def imputation(df):
-    df.dropna(thresh=len(df)*0.5,axis=1,inplace=True)
-    df.dropna(thresh=len(df)*0.5,axis=0,inplace=True)
+    # df.dropna(thresh=len(df)*0.9,axis=1,inplace=True)
+    # df.dropna(thresh=len(df)*0.5,axis=0,inplace=True)
     return df
 
 
-def preprocessing(df):
+def preprocessing_tuned(df):
     df = encodage(df)
     df = feature_engineering(df)
     df = imputation(df)
