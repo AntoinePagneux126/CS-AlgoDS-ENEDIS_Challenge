@@ -19,8 +19,8 @@ test_py_job:
   script: 
     - echo "starting test for python coverage ... "
     # to have a html file but the badge would not work
-    # - python3 -m pytest --cov-report=html --cov=code tests/
-    - python3 -m pytest --cov=code test/
+    # - python3 -m pytest --cov-report=html --cov=src tests/
+    - python3 -m pytest --cov=src test/
     - echo "Code coverage finished ..."
   artifacts: 
     untracked : false
@@ -29,7 +29,7 @@ test_py_job:
     expire_in: 60 days
   only : 
     changes :
-      - code/*.py
+      - src/*.py
 
 
 
@@ -54,7 +54,7 @@ pylint_job:
     - mkdir ./pylint
     - echo "starting lint for python code ... "
     - set -o noclobber
-    - pylint -ry -sy code/*.py  --output-format=text --output=docs/pylint_report.txt || pylint-exit $?
+    - pylint -ry -sy src/*.py  --output-format=text --output=docs/pylint_report.txt || pylint-exit $?
     
   artifacts:
     untracked: false
@@ -63,7 +63,7 @@ pylint_job:
       - docs/pylint_report.txt
   only : 
     changes :
-      - code/*.py
+      - src/*.py
 
 
 
@@ -87,8 +87,8 @@ create_docs_job:
   script: 
     - echo "starting docs generation for python code ... "
     - cd docs
-    - sphinx-apidoc -o . ../code
+    - sphinx-apidoc -o . ../src
     - make html
   only : 
     changes :
-      - code/*.py
+      - src/*.py

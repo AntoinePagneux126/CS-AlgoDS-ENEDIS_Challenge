@@ -15,10 +15,10 @@ import sys, inspect
 current_dir= os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 parent_dir= os.path.dirname(current_dir)
 sys.path.insert(0,parent_dir)
-sys.path.insert(0, os.path.abspath('../code'))
+sys.path.insert(0, os.path.abspath('../src'))
 sys.path.insert(0, os.path.abspath('../../'))
-sys.path.insert(0, os.path.abspath('../code/*.py'))
-sys.path.insert(0, os.path.abspath('../code/*'))
+sys.path.insert(0, os.path.abspath('../src/*.py'))
+sys.path.insert(0, os.path.abspath('../src/*'))
 
 
 # -- Project information -----------------------------------------------------
