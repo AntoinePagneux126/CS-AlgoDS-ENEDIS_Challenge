@@ -32,11 +32,27 @@ def merge(file_in="../dataset/inputs.csv",file_out="../dataset/outputs.csv"):
     df.to_csv("../dataset/inout.csv",index=False)
 
 def getxy(hour):
+    """[cos sin transformation for hour]
+
+    Args:
+        hour ([int or float]): [hour timestamp]
+
+    Returns:
+        [float]: [sin and cos of hour]
+    """
     x = math.sin((180 - hour * 15)/180 * 3.141)
     y = math.cos((180 - hour * 15)/180 * 3.141)
     return x, y
 
 def keep_relevant_features(df):
+    """[Keep all relevant featres]
+
+    Args:
+        df ([df.Dataframe]): [Dataframe with all features]
+
+    Returns:
+        [df.Dataframe]: [Dataframe with only relevant features]
+    """
     targets = ['RES1_BASE', 'RES11_BASE','PRO1_BASE', 'RES2_HC', 'RES2_HP', 'PRO2_HC', 'PRO2_HP']
     myfeatures=df.columns
     correlation=df.corr()
@@ -54,6 +70,14 @@ def keep_relevant_features(df):
     return df
     
 def symetric(df_reduced):
+    """[To get symetric and more normal likely distribution]
+
+    Args:
+        df_reduced ([pd.Dataframe]): [Dataset with only relevant features]
+
+    Returns:
+        [pd.Dataframe]: [Dataset with corrected features distribution]
+    """
     list_to_box=[]
     list_quantile=[]
     targets = ['RES1_BASE', 'RES11_BASE','PRO1_BASE', 'RES2_HC', 'RES2_HP', 'PRO2_HC', 'PRO2_HP']
@@ -80,13 +104,28 @@ def symetric(df_reduced):
     return df_reduced
 
 def encodage(df):
-    
+    """[to encode dataset and non numeric features]
+
+    Args:
+        df ([pd.Dataframe]): [Dataset to be encoded]
+
+    Returns:
+        [pd.Dataframe]: [Encoded dataframe]
+    """
     df_indexed=df.set_index("Horodate_UTC")
     df_indexed.index = pd.to_datetime(df.set_index("Horodate_UTC").index)
     return df_indexed
 
 
 def feature_engineering(df_indexed):
+    """[Features engineering with regroup different steps]
+
+    Args:
+        df_indexed ([pd.Dataframe]): [Dataset]
+
+    Returns:
+        [pd.Dataframe]: [Dataset with new features]
+    """
     df_indexed.drop(["Mois","IDS","Horodate"],inplace=True,axis=1)
     df_indexed = keep_relevant_features(df_indexed)
     df_indexed = symetric(df_indexed)
@@ -102,12 +141,28 @@ def feature_engineering(df_indexed):
     return df_indexed
 
 def imputation(df):
+    """[Imputation task to remove and trait missing values]
+
+    Args:
+        df ([pd.Dataframe]): [Preprocessed Dataset ]
+
+    Returns:
+        [pd.Dataframe]: [Imputed Dataset]
+    """
     # df.dropna(thresh=len(df)*0.9,axis=1,inplace=True)
     # df.dropna(thresh=len(df)*0.5,axis=0,inplace=True)
     return df
 
 
 def preprocessing_tuned(df):
+    """[Processing the dataset]
+
+    Args:
+        df ([pd.Dataframe]): [Dataset]
+
+    Returns:
+        [tuple]: [X,y Preprocessed Dataset with X the samples and y the targets]
+    """
     df = encodage(df)
     df = feature_engineering(df)
     df = imputation(df)
@@ -117,10 +172,30 @@ def preprocessing_tuned(df):
     return X, y
 
 def rmse(y_true, y_pred):
+    """[Root Mean Squared Energy]
+
+    Args:
+        y_true ([list, np.ndarray, pd.Series]): [True target]
+        y_pred ([list, np.ndarray, pd.Series]): [Predicted value]
+
+    Returns:
+        [float]: [RMSE score]
+    """
     return np.sqrt(mean_squared_error(y_true, y_pred))
 
 def evaluate_arimax_model(X_train, X_test, arima_order, exogenous_var_train, exogenous_var_test):
- 
+    """[Evaluate ARIMAX model for a certain configuration arima order]
+
+    Args:
+        X_train ([pd.Dataframe]): [the time series to predict (train part)]
+        X_test ([pd.Dataframe]): [the time series to challenge the predictor (test part)]
+        arima_order ([tuple]): [(p,d,q) respectively AR order, derivation order, MA order]
+        exogenous_var_train ([pd.Dataframe]): [exogenous set of data for trainning]
+        exogenous_var_test ([pd.Dataframe]): [exogenous set of data for testing]
+
+    Returns:
+        [tuple]: [error and predictions]
+    """
     mycolonne=exogenous_var_train.columns
     history = [x for x in X_train]
     exog=np.array([[x for x in exogenous_var_train[elt]] for elt in exogenous_var_train.columns]).T.tolist()
@@ -140,7 +215,20 @@ def evaluate_arimax_model(X_train, X_test, arima_order, exogenous_var_train, exo
     return error, predictions
 
 def arimax_grid_search(X_train, X_test, p_values, d_values, q_values, exogenous_var_train, exogenous_var_test):
+    """[Grid search for ARIMAX Model]
 
+    Args:
+        X_train ([pd.Dataframe]): [the time series to predict (train part)]
+        X_test ([pd.Dataframe]): [the time series to challenge the predictor (test part)]
+        p_values ([int]): [order value of AR part]
+        d_values ([int]): [order of derivation]
+        q_values ([int]): [order value of MA part]
+        exogenous_var_train ([pd.Dataframe]): [exogenous set of data for trainning]
+        exogenous_var_test ([pd.Dataframe]): [exogenous set of data for testing]
+
+    Returns:
+        [tuple]: [(bets config, best rmse among)those tested]
+    """
 
     best_score, best_cfg = float("inf"), None
     for p in p_values:
