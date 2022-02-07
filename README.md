@@ -77,7 +77,7 @@
  ```
 
  ## Run Model 
-```python3 main.py --mode train --model ARIMAX```
+```python3 main.py --mode=train --model=ARIMAX```
 
  ## Conclusion 
  Since the problem was complicated, we have learned so much about modeling time series and so on. The lecture was just an appetizer to go further on interesting point go get a better score with our model for this project.
