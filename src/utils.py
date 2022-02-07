@@ -3,7 +3,7 @@ import math
 import numpy as np
 from sklearn import preprocessing
 from sklearn.metrics import mean_squared_error
-from sklearn.preprocessing import PowerTransformer,QuantileTransformer
+from sklearn.preprocessing import PowerTransformer,QuantileTransformer,StandardScaler
 import scipy.stats as sct
 from statsmodels.tsa.arima.model import ARIMA
 from statsmodels.tsa.statespace.sarimax import SARIMAX
