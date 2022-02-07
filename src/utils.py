@@ -129,6 +129,7 @@ def feature_engineering(df_indexed):
     df_indexed.drop(["Mois","IDS","Horodate"],inplace=True,axis=1)
     df_indexed = keep_relevant_features(df_indexed)
     df_indexed = symetric(df_indexed)
+    df_indexed=df_indexed.fillna(df_indexed.mean())
     ss= preprocessing.StandardScaler()
     targets = ['RES1_BASE', 'RES11_BASE','PRO1_BASE', 'RES2_HC', 'RES2_HP', 'PRO2_HC', 'PRO2_HP']
     columns_targ = df_indexed.columns.drop(targets)
@@ -169,7 +170,14 @@ def preprocessing_tuned(df):
     targets = ['RES1_BASE', 'RES11_BASE','PRO1_BASE', 'RES2_HC', 'RES2_HP', 'PRO2_HC', 'PRO2_HP']
     X = df.drop(targets, axis=1)
     y = df[targets]
-    return X, y
+    return X,y
+
+def split(df):
+    mask = df["ds"]<"2017-01-01 00:00:00"
+    df= df[mask]
+    mask_pred = (df.index > "2016-06-01 00:00:00" ) & (df.index <= "2016-12-31 23:30:00")
+    return df[~mask_pred],df[mask_pred]
+
 
 def rmse(y_true, y_pred):
     """[Root Mean Squared Energy]
