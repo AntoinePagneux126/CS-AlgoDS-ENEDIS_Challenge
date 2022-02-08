@@ -46,7 +46,7 @@ if __name__ == '__main__':
 
     df = pd.read_csv(PATH+PATH_INOUT)
 
-    targets = ['RES1_BASE', 'RES11_BASE','PRO1_BASE', 'RES2_HC', 'RES2_HP', 'PRO2_HC', 'PRO2_HP']
+    targets = ['RES1_BASE']# 'RES11_BASE','PRO1_BASE', 'RES2_HC', 'RES2_HP', 'PRO2_HC', 'PRO2_HP']
 
     if model_type == "Prophet" :
         for target in targets :

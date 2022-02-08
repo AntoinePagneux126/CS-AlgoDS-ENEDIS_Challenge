@@ -75,6 +75,9 @@ def Proph(target,df):
     plt.grid()
     plt.savefig(f"../outputs/Prediction of {target} on 2nd half of 2016.png")
     forecast.to_csv(f"../outputs/{target}_by_Prophet.csv")
-    send_csv_by_mail()
+    try : 
+        send_csv_by_mail()
+    except :
+        print("mail will not be sended")
 
 
