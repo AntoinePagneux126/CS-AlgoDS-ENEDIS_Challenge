@@ -49,6 +49,29 @@ def evaluate_arimax_model(X_train, X_test, arima_order, exogenous_var_train, exo
             return L_error, predictions
 
 
+def arimax_grid_search(X_train, X_test, p_values, d_values, q_values, exogenous_var_train, exogenous_var_test):
+
+    best_score, best_cfg = float("inf"), None
+    for p in p_values:
+        for d in d_values:
+            for q in q_values:
+                order = (p, d, q)
+                try:
+                    rmse, _ = evaluate_arimax_model(
+                        X_train, X_test, order, exogenous_var_train, exogenous_var_test)
+                    if rmse < best_score:
+                        best_score, best_cfg = rmse, order
+                    print("ARIMAX(%d,%d,%d) RMSE=%.3f Exogenous =" %
+                          (p, d, q, rmse))
+
+                except:
+                    continue
+
+    print("Best ARIMAX%s MSE=%.3f" % (best_cfg, best_score))
+
+    return best_cfg, best_score
+
+
 def Arimax(target, df, arima_order, k):
     exogenous, X = preprocessing_tuned(df, target)
     mask = exogenous.index < "2017-01-01 00:00:00"
