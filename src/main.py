@@ -7,15 +7,10 @@ from arimax import Arimax
 from sarimax import Sarimax
 from ast import literal_eval as make_tuple
 
-# exemple to run:   python3 main.py --mode=train --model=cnn
-#                   python3 main.py --mode=train --model=resnet50
-#                   python3 main.py --mode=test --model=cnn --number=1
 
 # INPUTS
 my_config = config_algo_ds()
 parser = argparse.ArgumentParser()
-parser.add_argument("--mode", type=str,
-                    help="Enter the mode you want to use (train/test)", required=False, default="train")
 parser.add_argument("--model", type=str,
                     help="Enter the model you want to use", required=True)
 parser.add_argument("--order", type=str,
@@ -37,7 +32,6 @@ if __name__ == '__main__':
 
     # Read instructions from argparse
     args = parser.parse_args()
-    mode = args.mode
     model_type = args.model
     arima_order = make_tuple(args.order)
     seasonal_order = make_tuple(args.sorder)
@@ -45,7 +39,7 @@ if __name__ == '__main__':
 
     # Print
     print("-------------")
-    print("You will {} a {} on cpu".format(mode, model_type))
+    print("You will train a {} on cpu".format(model_type))
     print("-------------")
 
     # Print

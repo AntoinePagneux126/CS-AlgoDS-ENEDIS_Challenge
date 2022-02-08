@@ -159,7 +159,6 @@ class Classifier():
 
         # Lists for losses and accuracies
         train_losses = []
-        train_acc = []
         # Turn model into train mode
         self.model.train()
         # Train...

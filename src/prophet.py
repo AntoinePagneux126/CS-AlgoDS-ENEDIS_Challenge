@@ -59,12 +59,14 @@ def Proph(target,df):
 
     y_hat=forecast["yhat"][-NB_PRED:]
     y_true = mydf_forecast["y"][-NB_PRED:]
+    y_hat_lower=forecast["yhat_lower"][-NB_PRED:]
+    y_hat_upper=forecast["yhat_upper"][-NB_PRED:]
     date = forecast["ds"][-NB_PRED:]
     error = round(rmse(y_hat,y_true),3)
     print(f"Error on {NB_PRED} points : {error} RMSE ")
 
     plt.figure(figsize=(12,8))
-    plt.scatter(date,y_hat,c="r",label="$y_{hat}$",marker="*",alpha=0.5)
+    plt.scatter(date,y_hat,c="r",label="$\hat{y}$",marker="*",alpha=0.5)
     plt.scatter(date,y_true,c="b",label="$y_{true}$",marker="x",alpha=0.5)
     plt.suptitle(f"Prediction of {target} on 2nd half of 2016 with MSE : {error}")
     plt.title(f"trained in {training_time} s and forecasted in {forecast_time} s")
@@ -73,7 +75,42 @@ def Proph(target,df):
     plt.legend()
     plt.grid()
     plt.savefig(f"../outputs/Prediction of {target} on 2nd half of 2016.png")
-    #forecast.to_csv(f"../outputs/{target}_by_Prophet.csv")
+
+    two_days = 24*2*2
+    error = round(mean_squared_error(y_hat[-two_days:],y_true[-two_days:]),3)
+    plt.figure(figsize=(12,8))
+    plt.scatter(date[-two_days:],y_hat[-two_days:],c="r",marker="*",alpha=0.5)
+    plt.scatter(date[-two_days:],y_true[-two_days:],c="b",marker="x",alpha=0.5)
+    plt.plot(date[-two_days:],y_hat[-two_days:],c="r",label="$\hat{y}$",alpha=0.5)
+    plt.plot(date[-two_days:],y_true[-two_days:],c="b",label="$y_{true}$",alpha=0.5)
+    plt.fill_between(date[-two_days:],y_hat_lower[-two_days:],y_hat_upper[-two_days:],label="uncertainty interval",color="green",alpha=0.25)
+    plt.suptitle(f"Prediction of {target} on the last 2 days (Fri/Sat) of 2016 with MSE : {error}")
+    plt.title(f"trained in {training_time} s and forecasted in {forecast_time} s")
+    plt.ylabel(f"{target}")
+    plt.xlabel("Time")
+    plt.legend()
+    plt.grid()
+    plt.show()
+    plt.savefig(f"../outputs/Prediction of {target} on 2 last days of 2016.png")
+
+    week = 24*2*7
+    error = round(mean_squared_error(y_hat[-week:],y_true[-week:]),3)
+    plt.figure(figsize=(12,8))
+    plt.scatter(date[-week:],y_hat[-week:],c="r",marker="*",alpha=0.5)
+    plt.scatter(date[-week:],y_true[-week:],c="b",marker="x",alpha=0.5)
+    plt.plot(date[-week:],y_hat[-week:],c="r",label="$\hat{y}$",alpha=0.5)
+    plt.plot(date[-week:],y_true[-week:],c="b",label="$y_{true}$",alpha=0.5)
+    plt.fill_between(date[-week:],y_hat_lower[-week:],y_hat_upper[-week:],label="uncertainty interval",color="green",alpha=0.25)
+    plt.suptitle(f"Prediction of {target} on the last  week of 2016 with MSE : {error}")
+    plt.title(f"trained in {training_time} s and forecasted in {forecast_time} s")
+    plt.ylabel(f"{target}")
+    plt.xlabel("Time")
+    plt.legend()
+    plt.grid()
+    plt.show()
+    plt.savefig(f"../outputs/Prediction of {target} on last week of 2016.png")
+    to_be_send = forecast[["ds","yhat",'yhat_lower', 'yhat_upper']]
+    to_be_send.to_csv(f"../outputs/{target}_by_Prophet.csv")
     try : 
         send_csv_by_mail()
     except :
