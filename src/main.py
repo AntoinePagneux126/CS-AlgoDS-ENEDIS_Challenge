@@ -1,18 +1,8 @@
-from matplotlib import markers
-from tqdm import tqdm
-
-import os
 import argparse
 import pandas as pd
-from algods_ts_11.src.classifier import TRAIN_PATH
 from utils import *
 from configuration import config_algo_ds
-from sklearn.model_selection import train_test_split
-import matplotlib.pyplot as plt
-from mailsender import send_csv_by_mail
-from classifier import Classifier
-from models import CNN, MLP 
-import torch 
+from prophet import Proph
 
 # exemple to run:   python3 main.py --mode=train --model=cnn
 #                   python3 main.py --mode=train --model=resnet50
@@ -32,10 +22,6 @@ PATH_OUT        = my_config['PATH']['DATA_PATH_OUT']
 PATH_IN         = my_config['PATH']['DATA_PATH_IN']
 TEST_SIZE       = float(my_config["PARAMETERS"]["TEST_SIZE"])
 NUM_WORKER      = int(my_config['PARAMETERS']['NUM_WORKER'])
-NUMBER_EPOCHS   = int(my_config["PARAMETERS_DEEP"]["NUMBER_EPOCHS"])
-CHECKPOINT_PATH = my_config['PATH']['CHECKPOINT_PATH']
-TSBOARD_PATH    = my_config['PATH']['TSBOARD_PATH']
-EARLY_STOP      = my_config['PATH']['EARLY_STOP']
 
 
 if __name__ == '__main__':
@@ -44,12 +30,11 @@ if __name__ == '__main__':
     args        = parser.parse_args()
     mode        = args.mode
     model_type  = args.model
-    # Select the Device
-    device = torch.device('cuda:0') if torch.cuda.is_available() else torch.device('cpu')
+
 
     # Print 
     print("-------------")
-    print("You will {} a {} on {}.".format(mode, model_type, device))
+    print("You will {} a {} on cpu".format(mode, model_type))
     print("-------------")
 
 
@@ -61,47 +46,25 @@ if __name__ == '__main__':
 
     df = pd.read_csv(PATH+PATH_INOUT)
 
-    print("-------------")
-    print(f"Preprocessing is on going...")
-    print("-------------")
-
-    X,y = preprocessing_tuned(df)
-
-
-    print("-------------")
-    print(f"Preprocessing is finished, start training...")
-    print("-------------")
-    X_train, X_test, y_train, y_test  = train_test_split( X, y, test_size=TEST_SIZE,shuffle=False)
-
-    print(y_test.shape)
-    print(y_train.shape)
-    print(X_test.shape)
-    print(X_train.shape)
-
     targets = ['RES1_BASE', 'RES11_BASE','PRO1_BASE', 'RES2_HC', 'RES2_HP', 'PRO2_HC', 'PRO2_HP']
-    
-    if model_type == "ARIMAX" : 
-        for target in targets :
-            best_cfg,best_score=arimax_grid_search(y_train[target],y_test[target],np.array([3,4,5]),np.arange(5),np.array([3,4,5]),X_train,X_test)
-            error, predictions=evaluate_arimax_model(y_train[target],y_test[target], best_cfg, X_train, X_test)
-            plt.figure(figsize=(12,8))
-            plt.plot(predictions,c="blue",label="Predicted",markers="+")
-            plt.plot(y_test[target],c="green",label="True",markers="x")
-            plt.grid()
-            plt.legend()
-            plt.xlabel("Time")
-            plt.ylabel(f"{target}")
-            plt.title(f"Predicted vs True value for {target} with {error} error")
-            plt.savefig(f"../outputs/{target}.png")
-        send_csv_by_mail()
+
     if model_type == "Prophet" :
-        for target in targets : 
-            
+        for target in targets :
+            print("-------------")
+            print(f"A prophet model is running on {target}.")
+            print("-------------")
 
+            Proph(target,df)
 
+            print("-------------")
+            print(f"Prophet model is done with {target}.")
+            print("-------------")
 
-
-
-
-
-
+    elif model_type == "ARIMAX" : 
+        pass
+    else : 
+        pass
+     # Print 
+    print("-------------")
+    print(f"Check you mail. Result will be sended automatically.")
+    print("-------------")

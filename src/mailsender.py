@@ -36,10 +36,10 @@ def send_csv_by_mail(outputs_path : str = OUTPUT_PATH ,sender_adress : str = SEN
         message = MIMEMultipart()
         message['From'] = sender_adress
         message['To'] = receiver_adress
-        message['Subject'] = 'TRAINING ENDED -> New figures file'
+        message['Subject'] = 'TRAINING ENDED -> New figures files'
         #The subject line
         #The body and the attachments for the mail
-        mail_content = "Hello young data scientist, please find enclosed the following png files : \n"
+        mail_content = "Hello young data scientist, please find enclosed the following csv & png files : \n"
         for file in files:
             mail_content += " - " + file + "\n"
         mail_content += "Best regards,\nThe developper ;)"
