@@ -60,11 +60,10 @@ def Proph(target,df):
     y_hat=forecast["yhat"][-NB_PRED:]
     y_true = mydf_forecast["y"][-NB_PRED:]
     date = forecast["ds"][-NB_PRED:]
-    error = round(mean_squared_error(y_hat,y_true),3)
-    print(f"Error on {NB_PRED} points : {error} ")
+    error = round(rmse(y_hat,y_true),3)
+    print(f"Error on {NB_PRED} points : {error} RMSE ")
 
     plt.figure(figsize=(12,8))
-
     plt.scatter(date,y_hat,c="r",label="$y_{hat}$",marker="*",alpha=0.5)
     plt.scatter(date,y_true,c="b",label="$y_{true}$",marker="x",alpha=0.5)
     plt.suptitle(f"Prediction of {target} on 2nd half of 2016 with MSE : {error}")
@@ -74,7 +73,7 @@ def Proph(target,df):
     plt.legend()
     plt.grid()
     plt.savefig(f"../outputs/Prediction of {target} on 2nd half of 2016.png")
-    forecast.to_csv(f"../outputs/{target}_by_Prophet.csv")
+    #forecast.to_csv(f"../outputs/{target}_by_Prophet.csv")
     try : 
         send_csv_by_mail()
     except :
