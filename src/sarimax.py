@@ -45,6 +45,31 @@ def evaluate_sarimax_model(X_train, X_test, arima_order, seasonal_order, exogeno
             return L_error, predictions
 
 
+def sarimax_grid_search(X_train, X_test, p_values, d_values, q_values, s_values, exogenous_var_train, exogenous_var_test):
+
+    best_score, best_cfg = float("inf"), None
+    for p in p_values:
+        for d in d_values:
+            for q in q_values:
+                order = (p, d, q)
+                for s in s_values:
+                    seasonal_order = (p, d, q, s)
+                    try:
+                        rmse, _ = evaluate_sarimax_model(
+                            X_train, X_test, order, seasonal_order, exogenous_var_train, exogenous_var_test)
+                        if rmse < best_score:
+                            best_score, best_cfg = rmse, seasonal_order
+                        print("SARIMAX(%d,%d,%d) RMSE=%.3f Exogenous =" %
+                              (p, d, q, s, rmse))
+
+                    except:
+                        continue
+
+    print("Best SARIMAX%s MSE=%.3f" % (best_cfg, best_score))
+
+    return best_cfg, best_score
+
+
 def Sarimax(target, df, arima_order, seasonal_order, k):
     exogenous, X = preprocessing_tuned(df, target)
     mask = exogenous.index < "2017-01-01 00:00:00"
