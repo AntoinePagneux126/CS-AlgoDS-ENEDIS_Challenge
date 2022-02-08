@@ -1,46 +1,50 @@
-import pandas as pd 
+import pandas as pd
 import math
 import numpy as np
 from sklearn import preprocessing
 from sklearn.metrics import mean_squared_error
-from sklearn.preprocessing import PowerTransformer,QuantileTransformer,StandardScaler
+from sklearn.preprocessing import PowerTransformer, QuantileTransformer, StandardScaler
 import scipy.stats as sct
 from statsmodels.tsa.arima.model import ARIMA
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 import datetime as datetime
 
 
-
-def merge(file_in="../dataset/inputs.csv",file_out="../dataset/outputs.csv"): 
+def merge(file_in="../dataset/inputs.csv", file_out="../dataset/outputs.csv"):
     """[merge inputs and outputs datasets]
 
     Args:
         file_in (str, optional): [path to inputs csv file]. Defaults to "../dataset/inputs.csv".
         file_out (str, optional): [path to outputs csv file]. Defaults to "../dataset/outputs.csv".
     """
-    if not isinstance(file_in,str) or not isinstance(file_out,str):
-        raise Exception("file must be string which represent path to csv files")
+    if not isinstance(file_in, str) or not isinstance(file_out, str):
+        raise Exception(
+            "file must be string which represent path to csv files")
 
-    df_in  = pd.read_csv(file_in)
+    df_in = pd.read_csv(file_in)
     df_out = pd.read_csv(file_out)
-    df = pd.merge(df_in,df_out,how="inner",
-                    on = ['IDS', 'Horodate_UTC', 'Horodate', 'Mois'],
-                    sort=True,
-                    copy=True,
-                    indicator=False,
-                    validate=None,
-                )
-    df.to_csv("../dataset/inout.csv",index=False)
+    df = pd.merge(df_in, df_out, how="inner",
+                  on=['IDS', 'Horodate_UTC', 'Horodate', 'Mois'],
+                  sort=True,
+                  copy=True,
+                  indicator=False,
+                  validate=None,
+                  )
+    df.to_csv("../dataset/inout.csv", index=False)
+
 
 def change_date_format(date):
     """We want to have this format for the prophet API : YYYY-MM-DD HH:MM:SS"""
     return datetime.datetime.strptime(date, '%d/%m/%Y %H:%M').strftime('%Y-%m-%d %H:%M:00')
 
-def split(df,column):
-        mask = df[column]<"2017-01-01 00:00:00"
-        df= df[mask]
-        mask_pred = (df[column] > "2016-06-01 00:00:00" ) & (df[column] <= "2016-12-31 23:30:00")
-        return df[~mask_pred],df[mask_pred]
+
+def split(df, column):
+    mask = df[column] < "2017-01-01 00:00:00"
+    df = df[mask]
+    mask_pred = (df[column] > "2016-06-01 00:00:00") & (df[column]
+                                                        <= "2016-12-31 23:30:00")
+    return df[~mask_pred], df[mask_pred]
+
 
 def getxy(hour):
     """[cos sin transformation for hour]
@@ -51,11 +55,12 @@ def getxy(hour):
     Returns:
         [float]: [sin and cos of hour]
     """
-    x = math.sin((180 - hour * 15)/180 * 3.141)
-    y = math.cos((180 - hour * 15)/180 * 3.141)
+    x = math.sin((180 - hour * 15) / 180 * 3.141)
+    y = math.cos((180 - hour * 15) / 180 * 3.141)
     return x, y
 
-def keep_relevant_features(df,target):
+
+def keep_relevant_features(df, target):
     """[Keep all relevant featres]
 
     Args:
@@ -64,25 +69,27 @@ def keep_relevant_features(df,target):
     Returns:
         [df.Dataframe]: [Dataframe with only relevant features]
     """
-    targets = ['RES1_BASE', 'RES11_BASE','PRO1_BASE', 'RES2_HC', 'RES2_HP', 'PRO2_HC', 'PRO2_HP']
+    targets = ['RES1_BASE', 'RES11_BASE', 'PRO1_BASE',
+               'RES2_HC', 'RES2_HP', 'PRO2_HC', 'PRO2_HP']
     targets.remove(target)
-    df.drop(targets,inplace=True,axis=1)
-    myfeatures=df.columns
-    correlation=df.corr()
-    colonnes=df.columns
+    df.drop(targets, inplace=True, axis=1)
+    myfeatures = df.columns
+    correlation = df.corr()
+    colonnes = df.columns
     for ligne in colonnes:
         for col in colonnes:
-            if 0.9<abs(correlation[ligne][col])<1:
-                if col in myfeatures and col != target :
-                    myfeatures=myfeatures.drop(col)
-            elif correlation[ligne][col]==1:
+            if 0.9 < abs(correlation[ligne][col]) < 1:
+                if col in myfeatures and col != target:
+                    myfeatures = myfeatures.drop(col)
+            elif correlation[ligne][col] == 1:
                 break
     for col in df.columns:
-        if col not in myfeatures: 
-            df=df.drop(columns=[col])
+        if col not in myfeatures:
+            df = df.drop(columns=[col])
     return df
-    
-def symetric(df_reduced,target):
+
+
+def symetric(df_reduced, target):
     """[To get symetric and more normal likely distribution]
 
     Args:
@@ -91,11 +98,11 @@ def symetric(df_reduced,target):
     Returns:
         [pd.Dataframe]: [Dataset with corrected features distribution]
     """
-    list_to_box=[]
-    list_quantile=[]
+    list_to_box = []
+    list_quantile = []
     for feature in df_reduced.columns.drop(target):
-        skew=sct.skew(df_reduced[feature])
-        if abs(skew)>1:
+        skew = sct.skew(df_reduced[feature])
+        if abs(skew) > 1:
             list_to_box.append(feature)
         else:
             list_quantile.append(feature)
@@ -105,15 +112,17 @@ def symetric(df_reduced,target):
         reshaped_data = np.array(data).reshape(-1, 1)
         yj.fit(reshaped_data)
         df_reduced[elt] = yj.transform(reshaped_data)
-        
-    rng = np.random.RandomState(304)  
+
+    rng = np.random.RandomState(304)
     for elt in list_quantile:
-        qt = QuantileTransformer(output_distribution='normal',random_state=rng)
+        qt = QuantileTransformer(
+            output_distribution='normal', random_state=rng)
         data = np.array(df_reduced[elt])
         reshaped_data = np.array(data).reshape(-1, 1)
         qt.fit(reshaped_data)
         df_reduced[elt] = qt.transform(reshaped_data)
     return df_reduced
+
 
 def encodage(df):
     """[to encode dataset and non numeric features]
@@ -124,12 +133,12 @@ def encodage(df):
     Returns:
         [pd.Dataframe]: [Encoded dataframe]
     """
-    df_indexed=df.set_index("Horodate_UTC")
+    df_indexed = df.set_index("Horodate_UTC")
     df_indexed.index = pd.to_datetime(df.set_index("Horodate_UTC").index)
     return df_indexed
 
 
-def feature_engineering(df_indexed,target):
+def feature_engineering(df_indexed, target):
     """[Features engineering with regroup different steps]
 
     Args:
@@ -138,18 +147,23 @@ def feature_engineering(df_indexed,target):
     Returns:
         [pd.Dataframe]: [Dataset with new features]
     """
-    df_indexed.drop(["Mois","IDS","Horodate"],inplace=True,axis=1)
-    df_indexed = keep_relevant_features(df_indexed,target)
-    df_indexed = symetric(df_indexed,target)
-    df_indexed=df_indexed.fillna(df_indexed.mean())
+    df_indexed.drop(["Mois", "IDS", "Horodate"], inplace=True, axis=1)
+    df_indexed = keep_relevant_features(df_indexed, target)
+    df_indexed = symetric(df_indexed, target)
+    df_indexed = df_indexed.fillna(df_indexed.mean())
     # ss= preprocessing.StandardScaler()
     # df_indexed[target] = ss.fit_transform(df_indexed[target].values)
-    df_indexed["Year"]=df_indexed.index.year
-    df_indexed["Month"]=df_indexed.index.month.map(lambda x : np.cos(x*2*np.pi/12))
-    df_indexed["Day"]=df_indexed.index.day.map(lambda x : np.cos(x*2*np.pi/31))
-    df_indexed["Week_day"]=df_indexed.index.weekday.map(lambda x : np.cos(x*2*np.pi/7))
-    df_indexed["Hour_X"],df_indexed["Hour_Y"]=zip(*pd.Series(df_indexed.index.hour).apply(getxy))
+    df_indexed["Year"] = df_indexed.index.year
+    df_indexed["Month"] = df_indexed.index.month.map(
+        lambda x: np.cos(x * 2 * np.pi / 12))
+    df_indexed["Day"] = df_indexed.index.day.map(
+        lambda x: np.cos(x * 2 * np.pi / 31))
+    df_indexed["Week_day"] = df_indexed.index.weekday.map(
+        lambda x: np.cos(x * 2 * np.pi / 7))
+    df_indexed["Hour_X"], df_indexed["Hour_Y"] = zip(
+        *pd.Series(df_indexed.index.hour).apply(getxy))
     return df_indexed
+
 
 def imputation(df):
     """[Imputation task to remove and trait missing values]
@@ -165,7 +179,7 @@ def imputation(df):
     return df
 
 
-def preprocessing_tuned(df,target):
+def preprocessing_tuned(df, target):
     """[Processing the dataset]
 
     Args:
@@ -175,12 +189,11 @@ def preprocessing_tuned(df,target):
         [tuple]: [X,y Preprocessed Dataset with X the samples and y the targets]
     """
     df = encodage(df)
-    df = feature_engineering(df,target)
+    df = feature_engineering(df, target)
     df = imputation(df)
     X = df.drop(target, axis=1)
     y = df[target]
-    return X,y
-
+    return X, y
 
 
 def rmse(y_true, y_pred):
@@ -195,6 +208,8 @@ def rmse(y_true, y_pred):
     """
     return np.sqrt(mean_squared_error(y_true, y_pred))
 
+
+'''
 def evaluate_arimax_model(X_train, X_test, arima_order, exogenous_var_train, exogenous_var_test):
     """[Evaluate ARIMAX model for a certain configuration arima order]
 
@@ -262,8 +277,8 @@ def arimax_grid_search(X_train, X_test, p_values, d_values, q_values, exogenous_
 
     return best_cfg, best_score
 
-
-if __name__=="__main__" : 
+'''
+if __name__ == "__main__":
     df = pd.read_csv("../dataset/inout.csv")
-    X,y = preprocessing_tuned(df,"RES1_BASE")
+    X, y = preprocessing_tuned(df, "RES1_BASE")
     print(y)
