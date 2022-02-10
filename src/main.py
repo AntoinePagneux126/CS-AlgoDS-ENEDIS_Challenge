@@ -88,7 +88,7 @@ if __name__ == '__main__':
             print("-------------")
 
     else:
-        pass
+        print("Nothing to do... Please enter the followong command right after main.py: --model=THE-MODEL-YOU-WANT-TO-USE")
      # Print
     print("-------------")
     print(f"Check you mail. Result will be sended automatically.")
