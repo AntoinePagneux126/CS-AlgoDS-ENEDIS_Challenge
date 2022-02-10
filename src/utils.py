@@ -10,12 +10,12 @@ from statsmodels.tsa.statespace.sarimax import SARIMAX
 import datetime as datetime
 
 
-def merge(file_in="../dataset/inputs.csv", file_out="../dataset/outputs.csv"):
+def merge(file_in="../data/inputs.csv", file_out="../data/outputs.csv"):
     """[merge inputs and outputs datasets]
 
     Args:
-        file_in (str, optional): [path to inputs csv file]. Defaults to "../dataset/inputs.csv".
-        file_out (str, optional): [path to outputs csv file]. Defaults to "../dataset/outputs.csv".
+        file_in (str, optional): [path to inputs csv file]. Defaults to "../data/inputs.csv".
+        file_out (str, optional): [path to outputs csv file]. Defaults to "../data/outputs.csv".
     """
     if not isinstance(file_in, str) or not isinstance(file_out, str):
         raise Exception(
@@ -279,6 +279,6 @@ def arimax_grid_search(X_train, X_test, p_values, d_values, q_values, exogenous_
 
 '''
 if __name__ == "__main__":
-    df = pd.read_csv("../dataset/inout.csv")
+    df = pd.read_csv("../data/inout.csv")
     X, y = preprocessing_tuned(df, "RES1_BASE")
     print(y)

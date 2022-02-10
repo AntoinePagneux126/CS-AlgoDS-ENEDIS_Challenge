@@ -17,10 +17,6 @@ import warnings
 from statsmodels.tools.sm_exceptions import ConvergenceWarning
 warnings.simplefilter('ignore', ConvergenceWarning)
 
-df = pd.read_csv("../dataset/inout.csv", index_col=False)
-# , 'RES11_BASE','PRO1_BASE', 'RES2_HC', 'RES2_HP', 'PRO2_HC', 'PRO2_HP']
-targets = 'RES1_BASE'
-
 
 def evaluate_arimax_model(X_train, X_test, arima_order, exogenous_var_train, exogenous_var_test, k1):
     # k1=len(X_train) ## k1 is the number of points we consider for the train ()
