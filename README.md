@@ -37,41 +37,38 @@
 
  ## Architecture & overview
  ```
- .
+.
 ├── README.md
 ├── config
-│   └── config.ini
-├── dataset
-│   ├── inout.csv
-│   ├── inputs.csv
-│   └── outputs.csv
+│   └── config.ini
+├── data
+│   ├── inout.csv
+│   ├── inputs.csv
+│   └── outputs.csv
 ├── docs
-│   ├── Makefile
-│   ├── _build
-│   ├── _static
-│   ├── _templates
-│   ├── analysis_dataset.html
-│   ├── conf.py
-│   ├── index.rst
-│   └── make.bat
+│   ├── Makefile
+│   ├── analysis_dataset.html
+│   ├── conf.py
+│   ├── index.rst
+│   └── make.bat
 ├── jobAM.batch
-├── logslurms
-│   └── empty.txt
 ├── notebook
-│   ├── notebook_inout.ipynb
-│   ├── notebook_inout_dataviz.ipynb
-│   ├── notebook_inputs.ipynb
-│   ├── notebook_ouputs.ipynb
-│   └── prophet_model.ipynb
-├── outputs
-│   └── test.png
+│   ├── Statistical_Models.ipynb
+│   ├── data.ipynb
+│   ├── notebook_arimax.ipynb
+│   ├── notebook_inout_dataviz.ipynb
+│   └── prophet_Tanguy.ipynb
 ├── requirements.txt
 ├── src
-│   ├── __pycache__
-│   ├── configuration.py
-│   ├── mailsender.py
-│   ├── main.py
-│   └── utils.py
+│   ├── arimax.py
+│   ├── classifier.py
+│   ├── configuration.py
+│   ├── mailsender.py
+│   ├── main.py
+│   ├── models.py
+│   ├── prophet.py
+│   ├── sarimax.py
+│   └── utils.py
 └── test
     └── test_merger.py
  ```
