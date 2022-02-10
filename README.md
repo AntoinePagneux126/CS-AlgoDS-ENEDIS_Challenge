@@ -77,7 +77,12 @@
  ```
 
  ## Run Model 
-```python3 main.py --mode=train --model=ARIMAX```
+
+* Example to run an ARIMAX to predict the (default) RES1_BASE output: ```python3 main.py --model=ARIMAX```
+* Example to run an ARIMAX to predict the RES11_BASE output: ```python3 main.py --model=ARIMAX --timeserie=RES11_BASE```
+* Example to run an ARIMAX to predict all outputs: ```python3 main.py --mode=train --model=ARIMAX --timeserie=all```
+* Example to run an ARIMAX to predict the (default) RES1_BASE output with p,q,d coefficients: ```python3 main.py --model=ARIMAX --order=1,1,1```
+
 
  ## Conclusion 
  Since the problem was complicated, we have learned so much about modeling time series and so on. The lecture was just an appetizer to go further on interesting point go get a better score with our model for this project.
