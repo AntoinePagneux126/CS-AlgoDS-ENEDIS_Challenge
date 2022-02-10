@@ -1,5 +1,6 @@
 import argparse
 import pandas as pd
+from sqlalchemy import false
 from utils import *
 from configuration import config_algo_ds
 from prophet import Proph
@@ -19,6 +20,7 @@ parser.add_argument("--sorder", type=str, help="Enter the seasoal order",
                     required=False, default="1, 1, 1, 4")
 parser.add_argument(
     "--k", type=str, help="The number of points we make the predictions on", required=False, default="1000")
+parser.add_argument("--timeserie", type=str, help="Enter the timeserie you want to run predictions, for all: enter 'all'", required=False, default='RES1_BASE')
 
 PATH = my_config['PATH']['PATH']
 PATH_INOUT = my_config['PATH']['DATA_PATH_FULL']
@@ -26,6 +28,7 @@ PATH_OUT = my_config['PATH']['DATA_PATH_OUT']
 PATH_IN = my_config['PATH']['DATA_PATH_IN']
 TEST_SIZE = float(my_config["PARAMETERS"]["TEST_SIZE"])
 NUM_WORKER = int(my_config['PARAMETERS']['NUM_WORKER'])
+TARGETS = my_config['PARAMETERS']['TARGETS'].split(",")
 
 
 if __name__ == '__main__':
@@ -36,6 +39,8 @@ if __name__ == '__main__':
     arima_order = make_tuple(args.order)
     seasonal_order = make_tuple(args.sorder)
     k = int(args.k)
+    target = args.timeserie
+    
 
     # Print
     print("-------------")
@@ -48,10 +53,26 @@ if __name__ == '__main__':
     print("-------------")
 
     df = pd.read_csv(PATH + PATH_INOUT)
-
-    # 'RES11_BASE','PRO1_BASE', 'RES2_HC', 'RES2_HP', 'PRO2_HC', 'PRO2_HP']
-    targets = ['RES1_BASE']
-
+    
+    
+    # Compute the target for predictions
+    if target in TARGETS:
+        print("-------------")
+        print(f"Target: {target}.")
+        print("-------------")
+        targets = [target]
+    elif target=='all':
+        print("-------------")
+        print(f"Targets: All targets.")
+        print("-------------")
+        targets = TARGETS
+    else:# default case
+        print("-------------")
+        print(f"Target (default): RES1_BASE.")
+        print("-------------")
+        target = 'RES1_BASE'
+        
+    # Run model which have been chosen
     if model_type == "Prophet":
         for target in targets:
             print("-------------")
