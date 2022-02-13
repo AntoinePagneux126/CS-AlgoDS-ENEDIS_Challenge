@@ -1,0 +1,760 @@
+************* Module arimax
+src/arimax.py:21:0: C0301: Line too long (101/100) (line-too-long)
+src/arimax.py:48:0: C0301: Line too long (111/100) (line-too-long)
+src/arimax.py:84:0: C0301: Line too long (110/100) (line-too-long)
+src/arimax.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+src/arimax.py:15:0: W0401: Wildcard import utils (wildcard-import)
+src/arimax.py:21:0: C0103: Argument name "X_train" doesn't conform to snake_case naming style (invalid-name)
+src/arimax.py:21:0: C0103: Argument name "X_test" doesn't conform to snake_case naming style (invalid-name)
+src/arimax.py:21:0: C0103: Argument name "k1" doesn't conform to snake_case naming style (invalid-name)
+src/arimax.py:21:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/arimax.py:21:0: R0913: Too many arguments (6/5) (too-many-arguments)
+src/arimax.py:21:0: R0914: Too many local variables (17/15) (too-many-locals)
+src/arimax.py:25:0: R1721: Unnecessary use of a comprehension, use list(X_train) instead. (unnecessary-comprehension)
+src/arimax.py:26:0: R1721: Unnecessary use of a comprehension, use list(exogenous_var_train[elt]) instead. (unnecessary-comprehension)
+src/arimax.py:28:0: R1721: Unnecessary use of a comprehension, use list(exogenous_var_test[elt]) instead. (unnecessary-comprehension)
+src/arimax.py:31:18: R1734: Consider using [] instead of list() (use-list-literal)
+src/arimax.py:32:4: C0103: Variable name "L_error" doesn't conform to snake_case naming style (invalid-name)
+src/arimax.py:32:14: R1734: Consider using [] instead of list() (use-list-literal)
+src/arimax.py:33:8: C0103: Variable name "t" doesn't conform to snake_case naming style (invalid-name)
+src/arimax.py:21:0: R1710: Either all return statements in a function should return an expression, or none of them should. (inconsistent-return-statements)
+src/arimax.py:23:4: W0612: Unused variable 'mycolonne' (unused-variable)
+src/arimax.py:56:20: W0621: Redefining name 'rmse' from outer scope (line 15) (redefined-outer-name)
+src/arimax.py:48:0: C0103: Argument name "X_train" doesn't conform to snake_case naming style (invalid-name)
+src/arimax.py:48:0: C0103: Argument name "X_test" doesn't conform to snake_case naming style (invalid-name)
+src/arimax.py:48:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/arimax.py:48:0: R0913: Too many arguments (7/5) (too-many-arguments)
+src/arimax.py:51:8: C0103: Variable name "p" doesn't conform to snake_case naming style (invalid-name)
+src/arimax.py:52:12: C0103: Variable name "d" doesn't conform to snake_case naming style (invalid-name)
+src/arimax.py:53:16: C0103: Variable name "q" doesn't conform to snake_case naming style (invalid-name)
+src/arimax.py:63:16: W0702: No exception type(s) specified (bare-except)
+src/arimax.py:56:30: E1120: No value for argument 'k1' in function call (no-value-for-parameter)
+src/arimax.py:60:26: E1307: Argument 'builtins.list' does not match format type 'f' (bad-string-format-type)
+src/arimax.py:60:26: C0209: Formatting a regular string which could be a f-string (consider-using-f-string)
+src/arimax.py:66:10: C0209: Formatting a regular string which could be a f-string (consider-using-f-string)
+src/arimax.py:71:19: W0621: Redefining name 'df' from outer scope (line 15) (redefined-outer-name)
+src/arimax.py:72:15: W0621: Redefining name 'X' from outer scope (line 15) (redefined-outer-name)
+src/arimax.py:71:0: C0103: Function name "Arimax" doesn't conform to snake_case naming style (invalid-name)
+src/arimax.py:71:0: C0103: Argument name "df" doesn't conform to snake_case naming style (invalid-name)
+src/arimax.py:71:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/arimax.py:71:0: R0914: Too many local variables (19/15) (too-many-locals)
+src/arimax.py:72:15: C0103: Variable name "X" doesn't conform to snake_case naming style (invalid-name)
+src/arimax.py:81:4: C0103: Variable name "X_train" doesn't conform to snake_case naming style (invalid-name)
+src/arimax.py:81:13: C0103: Variable name "X_test" doesn't conform to snake_case naming style (invalid-name)
+src/arimax.py:83:4: C0103: Variable name "L_error" doesn't conform to snake_case naming style (invalid-name)
+src/arimax.py:1:0: W0611: Unused pandas imported as pd (unused-import)
+src/arimax.py:4:0: W0611: Unused seaborn imported as sns (unused-import)
+src/arimax.py:5:0: W0611: Unused plotly.express imported as px (unused-import)
+src/arimax.py:6:0: W0611: Unused PowerTransformer imported from sklearn.preprocessing (unused-import)
+src/arimax.py:7:0: W0611: Unused QuantileTransformer imported from sklearn.preprocessing (unused-import)
+src/arimax.py:8:0: W0611: Unused scipy.stats imported as sct (unused-import)
+src/arimax.py:9:0: W0611: Unused preprocessing imported from sklearn (unused-import)
+src/arimax.py:10:0: W0611: Unused import math (unused-import)
+src/arimax.py:11:0: W0611: Unused ARIMA imported from statsmodels.tsa.arima.model (unused-import)
+src/arimax.py:13:0: W0611: Unused TimeSeriesSplit imported from sklearn.model_selection (unused-import)
+src/arimax.py:15:0: W0614: Unused import pd from wildcard import (unused-wildcard-import)
+src/arimax.py:15:0: W0614: Unused import sct from wildcard import (unused-wildcard-import)
+src/arimax.py:15:0: W0614: Unused import datetime from wildcard import (unused-wildcard-import)
+src/arimax.py:15:0: W0614: Unused import merge from wildcard import (unused-wildcard-import)
+src/arimax.py:15:0: W0614: Unused import change_date_format from wildcard import (unused-wildcard-import)
+src/arimax.py:15:0: W0614: Unused import split from wildcard import (unused-wildcard-import)
+src/arimax.py:15:0: W0614: Unused import getxy from wildcard import (unused-wildcard-import)
+src/arimax.py:15:0: W0614: Unused import keep_relevant_features from wildcard import (unused-wildcard-import)
+src/arimax.py:15:0: W0614: Unused import symetric from wildcard import (unused-wildcard-import)
+src/arimax.py:15:0: W0614: Unused import encodage from wildcard import (unused-wildcard-import)
+src/arimax.py:15:0: W0614: Unused import feature_engineering from wildcard import (unused-wildcard-import)
+src/arimax.py:15:0: W0614: Unused import imputation from wildcard import (unused-wildcard-import)
+src/arimax.py:15:0: W0614: Unused import df from wildcard import (unused-wildcard-import)
+src/arimax.py:15:0: W0614: Unused import X from wildcard import (unused-wildcard-import)
+src/arimax.py:15:0: W0614: Unused import y from wildcard import (unused-wildcard-import)
+src/arimax.py:15:0: W0614: Unused import mean_squared_error from wildcard import (unused-wildcard-import)
+src/arimax.py:15:0: W0614: Unused import StandardScaler from wildcard import (unused-wildcard-import)
+src/arimax.py:10:0: C0411: standard import "import math" should be placed before "import pandas as pd" (wrong-import-order)
+src/arimax.py:16:0: C0411: standard import "import warnings" should be placed before "import pandas as pd" (wrong-import-order)
+src/arimax.py:17:0: C0411: third party import "from statsmodels.tools.sm_exceptions import ConvergenceWarning" should be placed before "from utils import *" (wrong-import-order)
+src/arimax.py:9:0: C0412: Imports from package sklearn are not grouped (ungrouped-imports)
+src/arimax.py:13:0: C0412: Imports from package sklearn are not grouped (ungrouped-imports)
+src/arimax.py:17:0: C0412: Imports from package statsmodels are not grouped (ungrouped-imports)
+************* Module classifier
+src/classifier.py:123:9: W0511: TODO COMPLETE LOADDATA (fixme)
+src/classifier.py:5:21: C0303: Trailing whitespace (trailing-whitespace)
+src/classifier.py:53:0: C0301: Line too long (121/100) (line-too-long)
+src/classifier.py:59:0: C0301: Line too long (111/100) (line-too-long)
+src/classifier.py:82:38: C0303: Trailing whitespace (trailing-whitespace)
+src/classifier.py:87:28: C0303: Trailing whitespace (trailing-whitespace)
+src/classifier.py:98:0: C0301: Line too long (113/100) (line-too-long)
+src/classifier.py:107:0: C0301: Line too long (173/100) (line-too-long)
+src/classifier.py:116:0: C0303: Trailing whitespace (trailing-whitespace)
+src/classifier.py:127:0: C0303: Trailing whitespace (trailing-whitespace)
+src/classifier.py:128:0: C0303: Trailing whitespace (trailing-whitespace)
+src/classifier.py:141:0: C0303: Trailing whitespace (trailing-whitespace)
+src/classifier.py:145:75: C0303: Trailing whitespace (trailing-whitespace)
+src/classifier.py:148:0: C0303: Trailing whitespace (trailing-whitespace)
+src/classifier.py:149:0: C0303: Trailing whitespace (trailing-whitespace)
+src/classifier.py:150:0: C0303: Trailing whitespace (trailing-whitespace)
+src/classifier.py:151:61: C0303: Trailing whitespace (trailing-whitespace)
+src/classifier.py:180:54: C0303: Trailing whitespace (trailing-whitespace)
+src/classifier.py:181:49: C0303: Trailing whitespace (trailing-whitespace)
+src/classifier.py:184:0: C0303: Trailing whitespace (trailing-whitespace)
+src/classifier.py:203:46: C0303: Trailing whitespace (trailing-whitespace)
+src/classifier.py:206:0: C0303: Trailing whitespace (trailing-whitespace)
+src/classifier.py:207:58: C0303: Trailing whitespace (trailing-whitespace)
+src/classifier.py:209:0: C0303: Trailing whitespace (trailing-whitespace)
+src/classifier.py:210:0: C0301: Line too long (103/100) (line-too-long)
+src/classifier.py:217:0: C0301: Line too long (160/100) (line-too-long)
+src/classifier.py:218:0: C0301: Line too long (107/100) (line-too-long)
+src/classifier.py:220:0: C0303: Trailing whitespace (trailing-whitespace)
+src/classifier.py:234:33: C0303: Trailing whitespace (trailing-whitespace)
+src/classifier.py:237:0: C0303: Trailing whitespace (trailing-whitespace)
+src/classifier.py:238:0: C0303: Trailing whitespace (trailing-whitespace)
+src/classifier.py:252:52: C0303: Trailing whitespace (trailing-whitespace)
+src/classifier.py:269:44: C0303: Trailing whitespace (trailing-whitespace)
+src/classifier.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+src/classifier.py:4:0: E0401: Unable to import 'torch' (import-error)
+src/classifier.py:5:0: R0402: Use 'from torch import nn' instead (consider-using-from-import)
+src/classifier.py:5:0: E0401: Unable to import 'torch.nn' (import-error)
+src/classifier.py:15:0: E0401: Unable to import 'torch.utils.tensorboard' (import-error)
+src/classifier.py:18:0: E0611: No name 'config_deeplearing' in module 'configuration' (no-name-in-module)
+src/classifier.py:69:33: W0621: Redefining name 'model' from outer scope (line 1) (redefined-outer-name)
+src/classifier.py:89:30: W0621: Redefining name 'model' from outer scope (line 1) (redefined-outer-name)
+src/classifier.py:113:8: C0103: Attribute name "lr" doesn't conform to snake_case naming style (invalid-name)
+src/classifier.py:97:0: C0115: Missing class docstring (missing-class-docstring)
+src/classifier.py:97:0: R0902: Too many instance attributes (11/7) (too-many-instance-attributes)
+src/classifier.py:98:4: R0913: Too many arguments (7/5) (too-many-arguments)
+src/classifier.py:124:8: E0633: Attempting to unpack a non-sequence None (unpacking-non-sequence)
+src/classifier.py:117:4: R0201: Method could be a function (no-self-use)
+src/classifier.py:165:16: C0103: Variable name "X" doesn't conform to snake_case naming style (invalid-name)
+src/classifier.py:166:12: C0103: Variable name "X" doesn't conform to snake_case naming style (invalid-name)
+src/classifier.py:165:12: W0612: Unused variable 'i' (unused-variable)
+src/classifier.py:197:17: C0103: Variable name "X" doesn't conform to snake_case naming style (invalid-name)
+src/classifier.py:198:16: C0103: Variable name "X" doesn't conform to snake_case naming style (invalid-name)
+src/classifier.py:185:4: R1711: Useless return at end of function or method (useless-return)
+src/classifier.py:210:4: R0914: Too many local variables (17/15) (too-many-locals)
+src/classifier.py:228:8: C0103: Variable name "n" doesn't conform to snake_case naming style (invalid-name)
+src/classifier.py:230:12: C0103: Variable name "tb" doesn't conform to snake_case naming style (invalid-name)
+src/classifier.py:232:16: C0103: Variable name "n" doesn't conform to snake_case naming style (invalid-name)
+src/classifier.py:236:8: C0103: Variable name "TensorboardWriter" doesn't conform to snake_case naming style (invalid-name)
+src/classifier.py:248:12: C0103: Variable name "n" doesn't conform to snake_case naming style (invalid-name)
+src/classifier.py:249:16: C0103: Variable name "cp" doesn't conform to snake_case naming style (invalid-name)
+src/classifier.py:251:20: C0103: Variable name "n" doesn't conform to snake_case naming style (invalid-name)
+src/classifier.py:138:12: W0201: Attribute 'model' defined outside __init__ (attribute-defined-outside-init)
+src/classifier.py:140:12: W0201: Attribute 'model' defined outside __init__ (attribute-defined-outside-init)
+src/classifier.py:143:8: W0201: Attribute 'model' defined outside __init__ (attribute-defined-outside-init)
+src/classifier.py:145:8: W0201: Attribute 'optimizer' defined outside __init__ (attribute-defined-outside-init)
+src/classifier.py:147:8: W0201: Attribute 'criterion' defined outside __init__ (attribute-defined-outside-init)
+src/classifier.py:205:12: W0201: Attribute 'val_loss' defined outside __init__ (attribute-defined-outside-init)
+src/classifier.py:1:0: W0611: Unused model imported from xml.parsers.expat (unused-import)
+src/classifier.py:2:0: W0611: Unused datasets imported from sklearn (unused-import)
+src/classifier.py:3:0: W0611: Unused numpy imported as np (unused-import)
+src/classifier.py:11:0: W0611: Unused import math (unused-import)
+src/classifier.py:12:0: W0611: Unused pandas imported as pd (unused-import)
+src/classifier.py:13:0: W0611: Unused Counter imported from collections (unused-import)
+src/classifier.py:10:0: C0411: standard import "import os" should be placed before "from sklearn import datasets" (wrong-import-order)
+src/classifier.py:11:0: C0411: standard import "import math" should be placed before "from sklearn import datasets" (wrong-import-order)
+src/classifier.py:13:0: C0411: standard import "from collections import Counter" should be placed before "from sklearn import datasets" (wrong-import-order)
+************* Module configuration
+src/configuration.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+src/configuration.py:8:4: W0621: Redefining name 'config' from outer scope (line 14) (redefined-outer-name)
+src/configuration.py:7:0: C0116: Missing function or method docstring (missing-function-docstring)
+************* Module mailsender
+src/mailsender.py:21:0: C0301: Line too long (147/100) (line-too-long)
+src/mailsender.py:24:0: C0301: Line too long (170/100) (line-too-long)
+src/mailsender.py:31:0: C0301: Line too long (126/100) (line-too-long)
+src/mailsender.py:42:0: C0301: Line too long (108/100) (line-too-long)
+src/mailsender.py:47:0: C0303: Trailing whitespace (trailing-whitespace)
+src/mailsender.py:57:0: C0303: Trailing whitespace (trailing-whitespace)
+src/mailsender.py:58:0: C0303: Trailing whitespace (trailing-whitespace)
+src/mailsender.py:67:0: C0303: Trailing whitespace (trailing-whitespace)
+src/mailsender.py:73:0: C0303: Trailing whitespace (trailing-whitespace)
+src/mailsender.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+src/mailsender.py:24:0: W0102: Dangerous default value RECEIVER_ADRESS (builtins.list) as argument (dangerous-default-value)
+src/mailsender.py:55:56: C0209: Formatting a regular string which could be a f-string (consider-using-f-string)
+src/mailsender.py:50:26: R1732: Consider using 'with' for resource-allocating operations (consider-using-with)
+************* Module main
+src/main.py:18:0: C0301: Line too long (138/100) (line-too-long)
+src/main.py:22:0: C0301: Line too long (108/100) (line-too-long)
+src/main.py:23:0: C0301: Line too long (159/100) (line-too-long)
+src/main.py:43:0: C0303: Trailing whitespace (trailing-whitespace)
+src/main.py:56:0: C0303: Trailing whitespace (trailing-whitespace)
+src/main.py:57:0: C0303: Trailing whitespace (trailing-whitespace)
+src/main.py:74:0: C0303: Trailing whitespace (trailing-whitespace)
+src/main.py:112:0: C0301: Line too long (123/100) (line-too-long)
+src/main.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+src/main.py:3:0: E0401: Unable to import 'sqlalchemy' (import-error)
+src/main.py:4:0: W0401: Wildcard import utils (wildcard-import)
+src/main.py:47:10: C0209: Formatting a regular string which could be a f-string (consider-using-f-string)
+src/main.py:66:14: W1309: Using an f-string that does not have any interpolated variables (f-string-without-interpolation)
+src/main.py:71:14: W1309: Using an f-string that does not have any interpolated variables (f-string-without-interpolation)
+src/main.py:73:8: C0103: Constant name "target" doesn't conform to UPPER_CASE naming style (invalid-name)
+src/main.py:115:10: W1309: Using an f-string that does not have any interpolated variables (f-string-without-interpolation)
+src/main.py:3:0: W0611: Unused false imported from sqlalchemy (unused-import)
+src/main.py:4:0: W0614: Unused import math from wildcard import (unused-wildcard-import)
+src/main.py:4:0: W0614: Unused import np from wildcard import (unused-wildcard-import)
+src/main.py:4:0: W0614: Unused import sct from wildcard import (unused-wildcard-import)
+src/main.py:4:0: W0614: Unused import datetime from wildcard import (unused-wildcard-import)
+src/main.py:4:0: W0614: Unused import merge from wildcard import (unused-wildcard-import)
+src/main.py:4:0: W0614: Unused import change_date_format from wildcard import (unused-wildcard-import)
+src/main.py:4:0: W0614: Unused import split from wildcard import (unused-wildcard-import)
+src/main.py:4:0: W0614: Unused import getxy from wildcard import (unused-wildcard-import)
+src/main.py:4:0: W0614: Unused import keep_relevant_features from wildcard import (unused-wildcard-import)
+src/main.py:4:0: W0614: Unused import symetric from wildcard import (unused-wildcard-import)
+src/main.py:4:0: W0614: Unused import encodage from wildcard import (unused-wildcard-import)
+src/main.py:4:0: W0614: Unused import feature_engineering from wildcard import (unused-wildcard-import)
+src/main.py:4:0: W0614: Unused import imputation from wildcard import (unused-wildcard-import)
+src/main.py:4:0: W0614: Unused import preprocessing_tuned from wildcard import (unused-wildcard-import)
+src/main.py:4:0: W0614: Unused import rmse from wildcard import (unused-wildcard-import)
+src/main.py:4:0: W0614: Unused import X from wildcard import (unused-wildcard-import)
+src/main.py:4:0: W0614: Unused import y from wildcard import (unused-wildcard-import)
+src/main.py:4:0: W0614: Unused import preprocessing from wildcard import (unused-wildcard-import)
+src/main.py:4:0: W0614: Unused import mean_squared_error from wildcard import (unused-wildcard-import)
+src/main.py:4:0: W0614: Unused import PowerTransformer from wildcard import (unused-wildcard-import)
+src/main.py:4:0: W0614: Unused import QuantileTransformer from wildcard import (unused-wildcard-import)
+src/main.py:4:0: W0614: Unused import StandardScaler from wildcard import (unused-wildcard-import)
+src/main.py:4:0: W0614: Unused import ARIMA from wildcard import (unused-wildcard-import)
+src/main.py:4:0: W0614: Unused import SARIMAX from wildcard import (unused-wildcard-import)
+src/main.py:9:0: C0411: standard import "from ast import literal_eval as make_tuple" should be placed before "import pandas as pd" (wrong-import-order)
+************* Module models
+src/models.py:3:16: C0303: Trailing whitespace (trailing-whitespace)
+src/models.py:6:0: C0303: Trailing whitespace (trailing-whitespace)
+src/models.py:12:13: C0303: Trailing whitespace (trailing-whitespace)
+src/models.py:13:0: C0304: Final newline missing (missing-final-newline)
+src/models.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+src/models.py:3:0: C0115: Missing class docstring (missing-class-docstring)
+src/models.py:7:4: W0107: Unnecessary pass statement (unnecessary-pass)
+src/models.py:3:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+src/models.py:8:0: C0115: Missing class docstring (missing-class-docstring)
+src/models.py:8:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+src/models.py:10:0: C0115: Missing class docstring (missing-class-docstring)
+src/models.py:10:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+src/models.py:12:0: C0115: Missing class docstring (missing-class-docstring)
+src/models.py:12:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+************* Module prophet
+src/prophet.py:2:19: C0303: Trailing whitespace (trailing-whitespace)
+src/prophet.py:4:18: C0303: Trailing whitespace (trailing-whitespace)
+src/prophet.py:5:31: C0303: Trailing whitespace (trailing-whitespace)
+src/prophet.py:7:15: C0303: Trailing whitespace (trailing-whitespace)
+src/prophet.py:8:15: C0303: Trailing whitespace (trailing-whitespace)
+src/prophet.py:17:19: C0303: Trailing whitespace (trailing-whitespace)
+src/prophet.py:36:33: C0303: Trailing whitespace (trailing-whitespace)
+src/prophet.py:44:32: C0303: Trailing whitespace (trailing-whitespace)
+src/prophet.py:50:33: C0303: Trailing whitespace (trailing-whitespace)
+src/prophet.py:86:0: C0301: Line too long (140/100) (line-too-long)
+src/prophet.py:103:0: C0301: Line too long (128/100) (line-too-long)
+src/prophet.py:114:9: C0303: Trailing whitespace (trailing-whitespace)
+src/prophet.py:119:0: C0305: Trailing newlines (trailing-newlines)
+src/prophet.py:69:41: W1401: Anomalous backslash in string: '\h'. String constant might be missing an r prefix. (anomalous-backslash-in-string)
+src/prophet.py:84:62: W1401: Anomalous backslash in string: '\h'. String constant might be missing an r prefix. (anomalous-backslash-in-string)
+src/prophet.py:101:54: W1401: Anomalous backslash in string: '\h'. String constant might be missing an r prefix. (anomalous-backslash-in-string)
+src/prophet.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+src/prophet.py:4:0: C0413: Import "import numpy as np" should be placed at the top of the module (wrong-import-position)
+src/prophet.py:5:0: C0413: Import "import matplotlib.pyplot as plt" should be placed at the top of the module (wrong-import-position)
+src/prophet.py:6:0: C0413: Import "import seaborn as sns" should be placed at the top of the module (wrong-import-position)
+src/prophet.py:7:0: C0413: Import "import datetime" should be placed at the top of the module (wrong-import-position)
+src/prophet.py:8:0: C0413: Import "import warnings" should be placed at the top of the module (wrong-import-position)
+src/prophet.py:9:0: E0401: Unable to import 'fbprophet' (import-error)
+src/prophet.py:9:0: C0413: Import "from fbprophet import Prophet" should be placed at the top of the module (wrong-import-position)
+src/prophet.py:10:0: C0413: Import "from sklearn.metrics import mean_squared_error" should be placed at the top of the module (wrong-import-position)
+src/prophet.py:12:0: C0413: Import "import math" should be placed at the top of the module (wrong-import-position)
+src/prophet.py:13:0: C0413: Import "from sklearn.preprocessing import QuantileTransformer, PowerTransformer" should be placed at the top of the module (wrong-import-position)
+src/prophet.py:14:0: C0413: Import "import scipy.stats as sct" should be placed at the top of the module (wrong-import-position)
+src/prophet.py:15:0: C0413: Import "from sklearn import preprocessing" should be placed at the top of the module (wrong-import-position)
+src/prophet.py:16:0: C0414: Import alias does not rename original package (useless-import-alias)
+src/prophet.py:16:0: C0413: Import "import time as time" should be placed at the top of the module (wrong-import-position)
+src/prophet.py:17:0: W0401: Wildcard import utils (wildcard-import)
+src/prophet.py:17:0: C0413: Import "from utils import *" should be placed at the top of the module (wrong-import-position)
+src/prophet.py:18:0: C0413: Import "from mailsender import send_csv_by_mail" should be placed at the top of the module (wrong-import-position)
+src/prophet.py:22:17: W0621: Redefining name 'df' from outer scope (line 17) (redefined-outer-name)
+src/prophet.py:23:4: W0621: Redefining name 'X' from outer scope (line 17) (redefined-outer-name)
+src/prophet.py:23:6: W0621: Redefining name 'y' from outer scope (line 17) (redefined-outer-name)
+src/prophet.py:22:0: C0103: Function name "Proph" doesn't conform to snake_case naming style (invalid-name)
+src/prophet.py:22:0: C0103: Argument name "df" doesn't conform to snake_case naming style (invalid-name)
+src/prophet.py:22:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/prophet.py:22:0: R0914: Too many local variables (28/15) (too-many-locals)
+src/prophet.py:23:4: C0103: Variable name "X" doesn't conform to snake_case naming style (invalid-name)
+src/prophet.py:23:6: C0103: Variable name "y" doesn't conform to snake_case naming style (invalid-name)
+src/prophet.py:25:4: C0103: Variable name "X" doesn't conform to snake_case naming style (invalid-name)
+src/prophet.py:28:4: C0103: Variable name "X_past" doesn't conform to snake_case naming style (invalid-name)
+src/prophet.py:40:4: C0103: Variable name "m" doesn't conform to snake_case naming style (invalid-name)
+src/prophet.py:116:4: W0702: No exception type(s) specified (bare-except)
+src/prophet.py:23:6: W0612: Unused variable 'y' (unused-variable)
+src/prophet.py:22:0: R0915: Too many statements (85/50) (too-many-statements)
+src/prophet.py:4:0: W0611: Unused numpy imported as np (unused-import)
+src/prophet.py:6:0: W0611: Unused seaborn imported as sns (unused-import)
+src/prophet.py:7:0: W0611: Unused import datetime (unused-import)
+src/prophet.py:12:0: W0611: Unused import math (unused-import)
+src/prophet.py:13:0: W0611: Unused QuantileTransformer imported from sklearn.preprocessing (unused-import)
+src/prophet.py:13:0: W0611: Unused PowerTransformer imported from sklearn.preprocessing (unused-import)
+src/prophet.py:14:0: W0611: Unused scipy.stats imported as sct (unused-import)
+src/prophet.py:15:0: W0611: Unused preprocessing imported from sklearn (unused-import)
+src/prophet.py:17:0: W0614: Unused import np from wildcard import (unused-wildcard-import)
+src/prophet.py:17:0: W0614: Unused import sct from wildcard import (unused-wildcard-import)
+src/prophet.py:17:0: W0614: Unused import merge from wildcard import (unused-wildcard-import)
+src/prophet.py:17:0: W0614: Unused import getxy from wildcard import (unused-wildcard-import)
+src/prophet.py:17:0: W0614: Unused import keep_relevant_features from wildcard import (unused-wildcard-import)
+src/prophet.py:17:0: W0614: Unused import symetric from wildcard import (unused-wildcard-import)
+src/prophet.py:17:0: W0614: Unused import encodage from wildcard import (unused-wildcard-import)
+src/prophet.py:17:0: W0614: Unused import feature_engineering from wildcard import (unused-wildcard-import)
+src/prophet.py:17:0: W0614: Unused import imputation from wildcard import (unused-wildcard-import)
+src/prophet.py:17:0: W0614: Unused import df from wildcard import (unused-wildcard-import)
+src/prophet.py:17:0: W0614: Unused import X from wildcard import (unused-wildcard-import)
+src/prophet.py:17:0: W0614: Unused import y from wildcard import (unused-wildcard-import)
+src/prophet.py:17:0: W0614: Unused import StandardScaler from wildcard import (unused-wildcard-import)
+src/prophet.py:17:0: W0614: Unused import ARIMA from wildcard import (unused-wildcard-import)
+src/prophet.py:17:0: W0614: Unused import SARIMAX from wildcard import (unused-wildcard-import)
+src/prophet.py:7:0: C0411: standard import "import datetime" should be placed before "import pandas as pd" (wrong-import-order)
+src/prophet.py:8:0: C0411: standard import "import warnings" should be placed before "import pandas as pd" (wrong-import-order)
+src/prophet.py:12:0: C0411: standard import "import math" should be placed before "import pandas as pd" (wrong-import-order)
+src/prophet.py:16:0: C0411: standard import "import time as time" should be placed before "import pandas as pd" (wrong-import-order)
+src/prophet.py:15:0: C0412: Imports from package sklearn are not grouped (ungrouped-imports)
+************* Module sarimax
+src/sarimax.py:21:0: C0301: Line too long (118/100) (line-too-long)
+src/sarimax.py:36:0: C0301: Line too long (102/100) (line-too-long)
+src/sarimax.py:48:0: C0301: Line too long (122/100) (line-too-long)
+src/sarimax.py:59:0: C0301: Line too long (108/100) (line-too-long)
+src/sarimax.py:85:0: C0301: Line too long (131/100) (line-too-long)
+src/sarimax.py:86:0: C0301: Line too long (111/100) (line-too-long)
+src/sarimax.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+src/sarimax.py:15:0: W0401: Wildcard import utils (wildcard-import)
+src/sarimax.py:21:0: C0103: Argument name "X_train" doesn't conform to snake_case naming style (invalid-name)
+src/sarimax.py:21:0: C0103: Argument name "X_test" doesn't conform to snake_case naming style (invalid-name)
+src/sarimax.py:21:0: C0103: Argument name "k1" doesn't conform to snake_case naming style (invalid-name)
+src/sarimax.py:21:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/sarimax.py:21:0: R0913: Too many arguments (7/5) (too-many-arguments)
+src/sarimax.py:21:0: R0914: Too many local variables (18/15) (too-many-locals)
+src/sarimax.py:25:0: R1721: Unnecessary use of a comprehension, use list(X_train) instead. (unnecessary-comprehension)
+src/sarimax.py:26:0: R1721: Unnecessary use of a comprehension, use list(exogenous_var_train[elt]) instead. (unnecessary-comprehension)
+src/sarimax.py:28:0: R1721: Unnecessary use of a comprehension, use list(exogenous_var_test[elt]) instead. (unnecessary-comprehension)
+src/sarimax.py:31:18: R1734: Consider using [] instead of list() (use-list-literal)
+src/sarimax.py:32:4: C0103: Variable name "L_error" doesn't conform to snake_case naming style (invalid-name)
+src/sarimax.py:32:14: R1734: Consider using [] instead of list() (use-list-literal)
+src/sarimax.py:33:8: C0103: Variable name "t" doesn't conform to snake_case naming style (invalid-name)
+src/sarimax.py:21:0: R1710: Either all return statements in a function should return an expression, or none of them should. (inconsistent-return-statements)
+src/sarimax.py:23:4: W0612: Unused variable 'mycolonne' (unused-variable)
+src/sarimax.py:58:24: W0621: Redefining name 'rmse' from outer scope (line 15) (redefined-outer-name)
+src/sarimax.py:48:0: C0103: Argument name "X_train" doesn't conform to snake_case naming style (invalid-name)
+src/sarimax.py:48:0: C0103: Argument name "X_test" doesn't conform to snake_case naming style (invalid-name)
+src/sarimax.py:48:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/sarimax.py:48:0: R0913: Too many arguments (8/5) (too-many-arguments)
+src/sarimax.py:48:0: R0914: Too many local variables (18/15) (too-many-locals)
+src/sarimax.py:51:8: C0103: Variable name "p" doesn't conform to snake_case naming style (invalid-name)
+src/sarimax.py:52:12: C0103: Variable name "d" doesn't conform to snake_case naming style (invalid-name)
+src/sarimax.py:53:16: C0103: Variable name "q" doesn't conform to snake_case naming style (invalid-name)
+src/sarimax.py:55:20: C0103: Variable name "s" doesn't conform to snake_case naming style (invalid-name)
+src/sarimax.py:65:20: W0702: No exception type(s) specified (bare-except)
+src/sarimax.py:58:34: E1120: No value for argument 'k1' in function call (no-value-for-parameter)
+src/sarimax.py:62:30: E1305: Too many arguments for format string (too-many-format-args)
+src/sarimax.py:62:30: C0209: Formatting a regular string which could be a f-string (consider-using-f-string)
+src/sarimax.py:68:10: C0209: Formatting a regular string which could be a f-string (consider-using-f-string)
+src/sarimax.py:51:4: R1702: Too many nested blocks (6/5) (too-many-nested-blocks)
+src/sarimax.py:73:20: W0621: Redefining name 'df' from outer scope (line 15) (redefined-outer-name)
+src/sarimax.py:74:15: W0621: Redefining name 'X' from outer scope (line 15) (redefined-outer-name)
+src/sarimax.py:73:0: C0103: Function name "Sarimax" doesn't conform to snake_case naming style (invalid-name)
+src/sarimax.py:73:0: C0103: Argument name "df" doesn't conform to snake_case naming style (invalid-name)
+src/sarimax.py:73:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/sarimax.py:73:0: R0914: Too many local variables (20/15) (too-many-locals)
+src/sarimax.py:74:15: C0103: Variable name "X" doesn't conform to snake_case naming style (invalid-name)
+src/sarimax.py:83:4: C0103: Variable name "X_train" doesn't conform to snake_case naming style (invalid-name)
+src/sarimax.py:83:13: C0103: Variable name "X_test" doesn't conform to snake_case naming style (invalid-name)
+src/sarimax.py:85:4: C0103: Variable name "L_error" doesn't conform to snake_case naming style (invalid-name)
+src/sarimax.py:1:0: W0611: Unused pandas imported as pd (unused-import)
+src/sarimax.py:4:0: W0611: Unused seaborn imported as sns (unused-import)
+src/sarimax.py:5:0: W0611: Unused plotly.express imported as px (unused-import)
+src/sarimax.py:6:0: W0611: Unused PowerTransformer imported from sklearn.preprocessing (unused-import)
+src/sarimax.py:7:0: W0611: Unused QuantileTransformer imported from sklearn.preprocessing (unused-import)
+src/sarimax.py:8:0: W0611: Unused scipy.stats imported as sct (unused-import)
+src/sarimax.py:9:0: W0611: Unused preprocessing imported from sklearn (unused-import)
+src/sarimax.py:10:0: W0611: Unused import math (unused-import)
+src/sarimax.py:11:0: W0611: Unused ARIMA imported from statsmodels.tsa.arima.model (unused-import)
+src/sarimax.py:13:0: W0611: Unused TimeSeriesSplit imported from sklearn.model_selection (unused-import)
+src/sarimax.py:15:0: W0614: Unused import pd from wildcard import (unused-wildcard-import)
+src/sarimax.py:15:0: W0614: Unused import sct from wildcard import (unused-wildcard-import)
+src/sarimax.py:15:0: W0614: Unused import datetime from wildcard import (unused-wildcard-import)
+src/sarimax.py:15:0: W0614: Unused import merge from wildcard import (unused-wildcard-import)
+src/sarimax.py:15:0: W0614: Unused import change_date_format from wildcard import (unused-wildcard-import)
+src/sarimax.py:15:0: W0614: Unused import split from wildcard import (unused-wildcard-import)
+src/sarimax.py:15:0: W0614: Unused import getxy from wildcard import (unused-wildcard-import)
+src/sarimax.py:15:0: W0614: Unused import keep_relevant_features from wildcard import (unused-wildcard-import)
+src/sarimax.py:15:0: W0614: Unused import symetric from wildcard import (unused-wildcard-import)
+src/sarimax.py:15:0: W0614: Unused import encodage from wildcard import (unused-wildcard-import)
+src/sarimax.py:15:0: W0614: Unused import feature_engineering from wildcard import (unused-wildcard-import)
+src/sarimax.py:15:0: W0614: Unused import imputation from wildcard import (unused-wildcard-import)
+src/sarimax.py:15:0: W0614: Unused import df from wildcard import (unused-wildcard-import)
+src/sarimax.py:15:0: W0614: Unused import X from wildcard import (unused-wildcard-import)
+src/sarimax.py:15:0: W0614: Unused import y from wildcard import (unused-wildcard-import)
+src/sarimax.py:15:0: W0614: Unused import mean_squared_error from wildcard import (unused-wildcard-import)
+src/sarimax.py:15:0: W0614: Unused import StandardScaler from wildcard import (unused-wildcard-import)
+src/sarimax.py:10:0: C0411: standard import "import math" should be placed before "import pandas as pd" (wrong-import-order)
+src/sarimax.py:16:0: C0411: standard import "import warnings" should be placed before "import pandas as pd" (wrong-import-order)
+src/sarimax.py:17:0: C0411: third party import "from statsmodels.tools.sm_exceptions import ConvergenceWarning" should be placed before "from utils import *" (wrong-import-order)
+src/sarimax.py:9:0: C0412: Imports from package sklearn are not grouped (ungrouped-imports)
+src/sarimax.py:13:0: C0412: Imports from package sklearn are not grouped (ungrouped-imports)
+src/sarimax.py:17:0: C0412: Imports from package statsmodels are not grouped (ungrouped-imports)
+************* Module utils
+src/utils.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+src/utils.py:10:0: C0414: Import alias does not rename original package (useless-import-alias)
+src/utils.py:26:4: W0621: Redefining name 'df' from outer scope (line 282) (redefined-outer-name)
+src/utils.py:26:4: C0103: Variable name "df" doesn't conform to snake_case naming style (invalid-name)
+src/utils.py:41:10: W0621: Redefining name 'df' from outer scope (line 282) (redefined-outer-name)
+src/utils.py:41:0: C0103: Argument name "df" doesn't conform to snake_case naming style (invalid-name)
+src/utils.py:41:0: C0116: Missing function or method docstring (missing-function-docstring)
+src/utils.py:59:4: W0621: Redefining name 'y' from outer scope (line 283) (redefined-outer-name)
+src/utils.py:58:4: C0103: Variable name "x" doesn't conform to snake_case naming style (invalid-name)
+src/utils.py:59:4: C0103: Variable name "y" doesn't conform to snake_case naming style (invalid-name)
+src/utils.py:63:27: W0621: Redefining name 'df' from outer scope (line 282) (redefined-outer-name)
+src/utils.py:63:0: C0103: Argument name "df" doesn't conform to snake_case naming style (invalid-name)
+src/utils.py:110:8: C0103: Variable name "yj" doesn't conform to snake_case naming style (invalid-name)
+src/utils.py:116:10: E1101: Module 'numpy.random' has no 'RandomState' member (no-member)
+src/utils.py:118:8: C0103: Variable name "qt" doesn't conform to snake_case naming style (invalid-name)
+src/utils.py:127:13: W0621: Redefining name 'df' from outer scope (line 282) (redefined-outer-name)
+src/utils.py:127:0: C0103: Argument name "df" doesn't conform to snake_case naming style (invalid-name)
+src/utils.py:168:15: W0621: Redefining name 'df' from outer scope (line 282) (redefined-outer-name)
+src/utils.py:168:0: C0103: Argument name "df" doesn't conform to snake_case naming style (invalid-name)
+src/utils.py:182:24: W0621: Redefining name 'df' from outer scope (line 282) (redefined-outer-name)
+src/utils.py:194:4: W0621: Redefining name 'X' from outer scope (line 283) (redefined-outer-name)
+src/utils.py:195:4: W0621: Redefining name 'y' from outer scope (line 283) (redefined-outer-name)
+src/utils.py:182:0: C0103: Argument name "df" doesn't conform to snake_case naming style (invalid-name)
+src/utils.py:194:4: C0103: Variable name "X" doesn't conform to snake_case naming style (invalid-name)
+src/utils.py:195:4: C0103: Variable name "y" doesn't conform to snake_case naming style (invalid-name)
+src/utils.py:212:0: W0105: String statement has no effect (pointless-string-statement)
+src/utils.py:4:0: W0611: Unused preprocessing imported from sklearn (unused-import)
+src/utils.py:6:0: W0611: Unused StandardScaler imported from sklearn.preprocessing (unused-import)
+src/utils.py:8:0: W0611: Unused ARIMA imported from statsmodels.tsa.arima.model (unused-import)
+src/utils.py:9:0: W0611: Unused SARIMAX imported from statsmodels.tsa.statespace.sarimax (unused-import)
+src/utils.py:2:0: C0411: standard import "import math" should be placed before "import pandas as pd" (wrong-import-order)
+src/utils.py:10:0: C0411: standard import "import datetime as datetime" should be placed before "import pandas as pd" (wrong-import-order)
+src/utils.py:1:0: R0801: Similar lines in 2 files
+==arimax:[0:20]
+==sarimax:[0:20]
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import plotly.express as px
+from sklearn.preprocessing import PowerTransformer
+from sklearn.preprocessing import QuantileTransformer
+import scipy.stats as sct
+from sklearn import preprocessing
+import math
+from statsmodels.tsa.arima.model import ARIMA
+from statsmodels.tsa.statespace.sarimax import SARIMAX
+from sklearn.model_selection import TimeSeriesSplit
+import tqdm
+from utils import *
+import warnings
+from statsmodels.tools.sm_exceptions import ConvergenceWarning
+warnings.simplefilter('ignore', ConvergenceWarning)
+
+ (duplicate-code)
+src/utils.py:1:0: R0801: Similar lines in 2 files
+==arimax:[83:95]
+==sarimax:[85:97]
+                                            exogenous_var_train=exog_train, exogenous_var_test=exog_test, k1=k)
+    longueur = len(preds)
+    true_val = X_test[0:longueur]
+    date = X_test.index[0:longueur]
+    error = np.mean(L_error)
+
+    plt.figure(figsize=(12, 8))
+
+    plt.scatter(date, preds, c="r", label="$y_{hat}$", marker="*", alpha=0.5)
+    plt.scatter(date, true_val, c="b",
+                label="$y_{true}$", marker="x", alpha=0.5)
+    plt.suptitle( (duplicate-code)
+src/utils.py:1:0: R0801: Similar lines in 2 files
+==arimax:[71:82]
+==sarimax:[73:84]
+    exogenous, X = preprocessing_tuned(df, target)
+    mask = exogenous.index < "2017-01-01 00:00:00"
+    exogenous = exogenous[mask]
+    mask_pred = (exogenous.index > "2016-06-01 00:00:00") & (exogenous.index <=
+                                                             "2016-12-31 23:30:00")
+    exog_train, exog_test = exogenous[~mask_pred], exogenous[mask_pred]
+    # print(exog_train)
+    mask_predx = (X.index > "2016-06-01 00:00:00") & (X.index <=
+                                                      "2016-12-31 23:30:00")
+    X_train, X_test = X[~mask_predx], X[mask_predx]
+ (duplicate-code)
+src/utils.py:1:0: R0801: Similar lines in 2 files
+==arimax:[36:47]
+==sarimax:[36:47]
+            model_fit = model.fit(disp=0)
+            yhat = model_fit.forecast(
+                steps=96, exog=exog_test[t * 96:t * 96 + 96])
+            predictions.extend(yhat.tolist())
+            history.extend(X_test.values[t * 96:t * 96 + 96])
+            exog.extend(exog_test[t * 96:t * 96 + t])
+            L_error.append(rmse(X_test.values[t * 96:t * 96 + 96], yhat))
+        else:
+            return L_error, predictions
+
+ (duplicate-code)
+src/utils.py:1:0: R0801: Similar lines in 2 files
+==arimax:[22:32]
+==sarimax:[22:32]
+    mycolonne = exogenous_var_train.columns
+    # history of Xvalues we use for predictions , we use the last k1 values
+    history = [x for x in X_train]
+    exog = np.array([[x for x in exogenous_var_train[elt]]
+                     for elt in exogenous_var_train.columns]).T.tolist()
+    exog_test = np.array([[x for x in exogenous_var_test[elt]]
+                          for elt in exogenous_var_test.columns]).T.tolist()
+    # make predictions
+    predictions = list()
+    L_error = list() (duplicate-code)
+src/utils.py:1:0: R0801: Similar lines in 2 files
+==arimax:[97:102]
+==sarimax:[99:104]
+    plt.ylabel(f"{target}")
+    plt.xlabel("Time")
+    plt.legend()
+    plt.grid()
+    plt.savefig( (duplicate-code)
+src/utils.py:1:0: R0801: Similar lines in 2 files
+==arimax:[49:54]
+==sarimax:[49:54]
+    best_score, best_cfg = float("inf"), None
+    for p in p_values:
+        for d in d_values:
+            for q in q_values:
+                order = (p, d, q) (duplicate-code)
+
+
+Report
+======
+641 statements analysed.
+
+Statistics by type
+------------------
+
++---------+-------+-----------+-----------+------------+---------+
+|type     |number |old number |difference |%documented |%badname |
++=========+=======+===========+===========+============+=========+
+|module   |9      |8          |+1.00      |0.00        |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|class    |6      |14         |-8.00      |16.67       |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|method   |10     |40         |-30.00     |100.00      |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|function |20     |9          |+11.00     |55.00       |15.00    |
++---------+-------+-----------+-----------+------------+---------+
+
+
+
+External dependencies
+---------------------
+::
+
+    arimax (main)
+    configuration (classifier,mailsender,main)
+    mailsender (prophet)
+    matplotlib 
+      \-pyplot (arimax,prophet,sarimax)
+    models (classifier)
+    numpy (arimax,classifier,prophet,sarimax,utils)
+    pandas (arimax,classifier,main,prophet,sarimax,utils)
+    plotly 
+      \-express (arimax,sarimax)
+    prophet (main)
+    sarimax (main)
+    scipy 
+      \-stats (arimax,prophet,sarimax,utils)
+    seaborn (arimax,prophet,sarimax)
+    sklearn 
+      \-datasets (classifier)
+      \-metrics (prophet,utils)
+      \-model_selection (arimax,sarimax)
+      \-preprocessing (arimax,prophet,sarimax,utils)
+    statsmodels 
+      \-tools 
+      | \-sm_exceptions (arimax,sarimax)
+      \-tsa 
+        \-arima 
+        | \-model (arimax,sarimax,utils)
+        \-statespace 
+          \-sarimax (arimax,sarimax,utils)
+    tqdm (arimax,classifier,sarimax)
+    utils (arimax,main,prophet,sarimax)
+
+
+
+Raw metrics
+-----------
+
++----------+-------+------+---------+-----------+
+|type      |number |%     |previous |difference |
++==========+=======+======+=========+===========+
+|code      |767    |68.24 |787      |-20.00     |
++----------+-------+------+---------+-----------+
+|docstring |154    |13.70 |286      |-132.00    |
++----------+-------+------+---------+-----------+
+|comment   |56     |4.98  |72       |-16.00     |
++----------+-------+------+---------+-----------+
+|empty     |147    |13.08 |230      |-83.00     |
++----------+-------+------+---------+-----------+
+
+
+
+Duplication
+-----------
+
++-------------------------+------+---------+-----------+
+|                         |now   |previous |difference |
++=========================+======+=========+===========+
+|nb duplicated lines      |64    |17       |+47.00     |
++-------------------------+------+---------+-----------+
+|percent duplicated lines |5.787 |1.249    |+4.54      |
++-------------------------+------+---------+-----------+
+
+
+
+Messages by category
+--------------------
+
++-----------+-------+---------+-----------+
+|type       |number |previous |difference |
++===========+=======+=========+===========+
+|convention |208    |254      |-46.00     |
++-----------+-------+---------+-----------+
+|refactor   |42     |28       |+14.00     |
++-----------+-------+---------+-----------+
+|warning    |160    |52       |+108.00    |
++-----------+-------+---------+-----------+
+|error      |12     |39       |-27.00     |
++-----------+-------+---------+-----------+
+
+
+
+% errors / warnings by module
+-----------------------------
+
++--------------+------+--------+---------+-----------+
+|module        |error |warning |refactor |convention |
++==============+======+========+=========+===========+
+|classifier    |41.67 |10.00   |14.29    |23.56      |
++--------------+------+--------+---------+-----------+
+|sarimax       |16.67 |20.62   |28.57    |16.83      |
++--------------+------+--------+---------+-----------+
+|arimax        |16.67 |20.62   |23.81    |14.90      |
++--------------+------+--------+---------+-----------+
+|prophet       |8.33  |20.00   |4.76     |20.19      |
++--------------+------+--------+---------+-----------+
+|main          |8.33  |18.12   |0.00     |5.77       |
++--------------+------+--------+---------+-----------+
+|utils         |8.33  |8.75    |16.67    |8.17       |
++--------------+------+--------+---------+-----------+
+|models        |0.00  |0.62    |9.52     |4.33       |
++--------------+------+--------+---------+-----------+
+|mailsender    |0.00  |0.62    |2.38     |5.29       |
++--------------+------+--------+---------+-----------+
+|configuration |0.00  |0.62    |0.00     |0.96       |
++--------------+------+--------+---------+-----------+
+
+
+
+Messages
+--------
+
++-------------------------------+------------+
+|message id                     |occurrences |
++===============================+============+
+|unused-wildcard-import         |73          |
++-------------------------------+------------+
+|invalid-name                   |65          |
++-------------------------------+------------+
+|trailing-whitespace            |47          |
++-------------------------------+------------+
+|unused-import                  |39          |
++-------------------------------+------------+
+|line-too-long                  |26          |
++-------------------------------+------------+
+|redefined-outer-name           |21          |
++-------------------------------+------------+
+|wrong-import-order             |16          |
++-------------------------------+------------+
+|wrong-import-position          |14          |
++-------------------------------+------------+
+|missing-module-docstring       |9           |
++-------------------------------+------------+
+|missing-function-docstring     |9           |
++-------------------------------+------------+
+|ungrouped-imports              |7           |
++-------------------------------+------------+
+|too-many-locals                |7           |
++-------------------------------+------------+
+|duplicate-code                 |7           |
++-------------------------------+------------+
+|unnecessary-comprehension      |6           |
++-------------------------------+------------+
+|consider-using-f-string        |6           |
++-------------------------------+------------+
+|attribute-defined-outside-init |6           |
++-------------------------------+------------+
+|too-many-arguments             |5           |
++-------------------------------+------------+
+|missing-class-docstring        |5           |
++-------------------------------+------------+
+|import-error                   |5           |
++-------------------------------+------------+
+|wildcard-import                |4           |
++-------------------------------+------------+
+|use-list-literal               |4           |
++-------------------------------+------------+
+|unused-variable                |4           |
++-------------------------------+------------+
+|too-few-public-methods         |4           |
++-------------------------------+------------+
+|f-string-without-interpolation |3           |
++-------------------------------+------------+
+|bare-except                    |3           |
++-------------------------------+------------+
+|anomalous-backslash-in-string  |3           |
++-------------------------------+------------+
+|useless-import-alias           |2           |
++-------------------------------+------------+
+|no-value-for-parameter         |2           |
++-------------------------------+------------+
+|inconsistent-return-statements |2           |
++-------------------------------+------------+
+|useless-return                 |1           |
++-------------------------------+------------+
+|unpacking-non-sequence         |1           |
++-------------------------------+------------+
+|unnecessary-pass               |1           |
++-------------------------------+------------+
+|trailing-newlines              |1           |
++-------------------------------+------------+
+|too-many-statements            |1           |
++-------------------------------+------------+
+|too-many-nested-blocks         |1           |
++-------------------------------+------------+
+|too-many-instance-attributes   |1           |
++-------------------------------+------------+
+|too-many-format-args           |1           |
++-------------------------------+------------+
+|pointless-string-statement     |1           |
++-------------------------------+------------+
+|no-self-use                    |1           |
++-------------------------------+------------+
+|no-name-in-module              |1           |
++-------------------------------+------------+
+|no-member                      |1           |
++-------------------------------+------------+
+|missing-final-newline          |1           |
++-------------------------------+------------+
+|fixme                          |1           |
++-------------------------------+------------+
+|dangerous-default-value        |1           |
++-------------------------------+------------+
+|consider-using-with            |1           |
++-------------------------------+------------+
+|consider-using-from-import     |1           |
++-------------------------------+------------+
+|bad-string-format-type         |1           |
++-------------------------------+------------+
+
+
+
+
+------------------------------------------------------------------
+Your code has been rated at 2.67/10 (previous run: 2.50/10, +0.17)
+
