@@ -10,7 +10,7 @@
 
 ## Useful links 
 * Our Workspace : [Here](https://tanguycolleville.notion.site/Algorithms-in-Data-Science-8c88a1d9998e466c9f6f3e35ab03e8c1)
-* Our Documentation : [Here](https://www.overleaf.com/project/61feb5dc3d27be675ebfa804)
+* Our Documentation & Organization page : [Here](https://www.overleaf.com/project/61feb5dc3d27be675ebfa804)
 * Our Video : [Here](https://www.youtube.com/watch?v=L7_RWz8G-yE)
 
 
