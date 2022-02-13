@@ -11,7 +11,7 @@
 ## Useful links 
 * Our Workspace : [Here](https://tanguycolleville.notion.site/Algorithms-in-Data-Science-8c88a1d9998e466c9f6f3e35ab03e8c1)
 * Our Documentation : [Here](https://www.overleaf.com/project/61feb5dc3d27be675ebfa804)
-* Our Video : [Here]()
+* Our Video : [Here](https://www.youtube.com/watch?v=L7_RWz8G-yE)
 
 
 ## Summary
@@ -81,6 +81,15 @@
 * Example to run an ARIMAX to predict the RES11_BASE output: ```python3 main.py --model=ARIMAX --timeserie=RES11_BASE```
 * Example to run an ARIMAX to predict all outputs: ```python3 main.py --mode=train --model=ARIMAX --timeserie=all```
 * Example to run an ARIMAX to predict the (default) RES1_BASE output with p,q,d coefficients: ```python3 main.py --model=ARIMAX --order=1,1,1```
+
+ ## Documentation 
+ * You can access to python code documentation in docs/_build/hmtl/index.html
+
+ * You can access to python coverage report in docs/htmlcov/index.html
+
+ * You can access to python pylint report in docs/pylint_report.txt
+
+ * You can access the 5 pages report about the projet pylint report in docs/Report_Challenge_ENEDIS_Briet_Colleville_Pagneux.pdf
 
 
  ## Conclusion 
