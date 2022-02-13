@@ -21,11 +21,12 @@
   - [Introduction](#introduction)
   - [Our approach](#our--approach)
   - [Architecture & overview](#architecture--overview)
-  - [Model & stuffs](#model--stuffs)
+  - [Run Model](#run-model)
+  - [Documentation](#documentation)
   - [Conclusion](#conclusion)
 
  ## Introduction 
-    This project is a sligthly modified version of previous ENS Challenge proposed in 2019 by ENEDIS. 
+  This project is a sligthly modified version of previous ENS Challenge proposed in 2019 by ENEDIS, for more details please click [here](https://challengedata.ens.fr/challenges/6).  
 
  ## Our approach
    * Data investigation, Point out issue that we may encounter
@@ -74,7 +75,7 @@
 └── test
     └── test_merger.py
  ```
-
+Inout.csv is nothing else than the inputs and outputs csv files merged.
  ## Run Model 
 
 * Example to run an ARIMAX to predict the (default) RES1_BASE output: ```python3 main.py --model=ARIMAX```
@@ -82,14 +83,16 @@
 * Example to run an ARIMAX to predict all outputs: ```python3 main.py --mode=train --model=ARIMAX --timeserie=all```
 * Example to run an ARIMAX to predict the (default) RES1_BASE output with p,q,d coefficients: ```python3 main.py --model=ARIMAX --order=1,1,1```
 
+Please note that by providing your email adress in ```config/config.ini``` results will be sended to you by mail as soon as the code ended. 
+
  ## Documentation 
- * You can access to python code documentation in docs/_build/hmtl/index.html
+ * You can access to python code documentation in ```docs/_build/hmtl/index.html```
 
- * You can access to python coverage report in docs/htmlcov/index.html
+ * You can access to python coverage report in ```docs/htmlcov/index.html```
 
- * You can access to python pylint report in docs/pylint_report.txt
+ * You can access to python pylint report in ```docs/pylint_report.txt```
 
- * You can access the 5 pages report about the projet pylint report in docs/Report_Challenge_ENEDIS_Briet_Colleville_Pagneux.pdf
+ * You can access the 5 pages report about the projet pylint report in ```docs/Report_Challenge_ENEDIS_Briet_Colleville_Pagneux.pdf```
 
 
  ## Conclusion 
